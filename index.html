@@ -1,121 +1,613 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Translation & English Notes</title>
+  <title>Manga Translation Diner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      background: #fafafa;
-      color: #222;
+    :root {
+      --red: #D72B2B;
+      --red-dark: #A81E1E;
+      --yellow: #F5C518;
+      --yellow-light: #FFF3A3;
+      --cream: #FFF8EE;
+      --brown: #3B1F0A;
+      --tan: #E8C98A;
+      --white: #FFFDF7;
+      --checker: #2B0A0A;
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* ── CHECKERBOARD STRIPE ── */
+    .checker-bar {
+      height: 18px;
+      background-image: repeating-linear-gradient(
+        90deg,
+        var(--red) 0px, var(--red) 18px,
+        var(--yellow) 18px, var(--yellow) 36px
+      );
+    }
+
+    /* ── HEADER ── */
     header {
-      padding: 40px 20px;
-      background: #111;
-      color: #fff;
+      background: var(--red);
+      padding: 0 20px 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 50%, rgba(0,0,0,0.1) 0%, transparent 60%);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0 6px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .header-badge {
+      background: var(--yellow);
+      color: var(--brown);
+      padding: 3px 10px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .header-main {
+      padding: 20px 0 10px;
+      position: relative;
+    }
+
+    .neon-tag {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 13px;
+      color: var(--yellow);
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      display: block;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    header p {
-      margin-top: 10px;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    .card {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .card h2 {
-      margin-top: 0;
-    }
-
-    a.button {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #111;
+      font-family: 'Alfa Slab One', serif;
+      font-size: clamp(36px, 8vw, 72px);
       color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 14px;
+      line-height: 1;
+      text-shadow: 4px 4px 0 var(--red-dark), 6px 6px 0 rgba(0,0,0,0.3);
+      letter-spacing: -0.01em;
     }
 
-    footer {
+    header h1 span {
+      color: var(--yellow);
+    }
+
+    .header-sub {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(14px, 3vw, 20px);
+      color: rgba(255,255,255,0.88);
+      margin-top: 10px;
+    }
+
+    /* ── BURGER DIVIDER ── */
+    .burger-divider {
+      background: var(--brown);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      font-family: 'Permanent Marker', cursive;
+      color: var(--yellow);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      overflow: hidden;
+    }
+
+    .burger-divider span {
+      opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--yellow);
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-bottom: 4px solid var(--brown);
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      color: var(--brown);
+      text-decoration: none;
+      padding: 14px 24px;
+      letter-spacing: 0.05em;
+      transition: background 0.15s, color 0.15s;
+      border-right: 2px solid rgba(59,31,10,0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a:last-child { border-right: none; }
+
+    nav a:hover, nav a.active {
+      background: var(--red);
+      color: #fff;
+    }
+
+    /* ── HERO BANNER ── */
+    .hero {
+      background: var(--brown);
+      padding: 50px 20px;
       text-align: center;
-      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(ellipse at 0% 100%, rgba(215,43,43,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 0%, rgba(245,197,24,0.15) 0%, transparent 50%);
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .open-sign {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--brown);
+      font-family: 'Permanent Marker', cursive;
+      font-size: 13px;
+      padding: 5px 18px;
+      border-radius: 4px;
+      letter-spacing: 0.2em;
+      margin-bottom: 20px;
+      transform: rotate(-1.5deg);
+      box-shadow: 3px 3px 0 var(--red-dark);
+    }
+
+    .hero h2 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: clamp(26px, 5vw, 46px);
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .hero h2 em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    .hero p {
+      color: rgba(255,248,238,0.75);
+      font-size: 16px;
+      margin-top: 16px;
+      line-height: 1.7;
+      font-weight: 600;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      text-align: center;
+      padding: 40px 20px 10px;
+    }
+
+    .section-title h2 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 28px;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .section-title p {
+      font-size: 14px;
+      color: rgba(59,31,10,0.6);
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .squiggle {
+      width: 60px;
+      height: 4px;
+      background: var(--yellow);
+      border-radius: 2px;
+      margin: 10px auto 0;
+    }
+
+    /* ── MENU GRID ── */
+    .menu-grid {
+      max-width: 960px;
+      margin: 30px auto 50px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .menu-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 3px solid var(--brown);
+      box-shadow: 6px 6px 0 var(--brown);
+      overflow: hidden;
+      transition: transform 0.18s, box-shadow 0.18s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 var(--brown);
+    }
+
+    .menu-card-header {
+      background: var(--red);
+      padding: 18px 20px 14px;
+      position: relative;
+    }
+
+    .menu-card:nth-child(2) .menu-card-header { background: var(--brown); }
+    .menu-card:nth-child(3) .menu-card-header { background: #2C6B3A; }
+
+    .menu-number {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .menu-card-header h3 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 20px;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .menu-card-header .menu-emoji {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 36px;
+      opacity: 0.85;
+    }
+
+    .menu-card-body {
+      padding: 18px 20px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-tag {
+      display: inline-block;
+      background: var(--yellow-light);
+      color: var(--brown);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      border: 1.5px solid var(--tan);
+      margin-bottom: 10px;
+    }
+
+    .menu-card-body p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(59,31,10,0.8);
+      flex: 1;
+    }
+
+    .menu-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 11px 20px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border-radius: 8px;
+      border: 2.5px solid var(--brown);
+      box-shadow: 3px 3px 0 var(--brown);
+      transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+      text-align: center;
+    }
+
+    .menu-btn:hover {
+      background: var(--red-dark);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--brown);
+    }
+
+    .menu-card:nth-child(2) .menu-btn { background: var(--brown); }
+    .menu-card:nth-child(2) .menu-btn:hover { background: #2a1406; }
+    .menu-card:nth-child(3) .menu-btn { background: #2C6B3A; }
+    .menu-card:nth-child(3) .menu-btn:hover { background: #1f4d2a; }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      background: var(--yellow);
+      border-top: 4px solid var(--brown);
+      border-bottom: 4px solid var(--brown);
+      padding: 30px 20px;
+    }
+
+    .about-strip-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .about-icon {
+      font-size: 52px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .about-strip h3 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 20px;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+
+    .about-strip p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(59,31,10,0.85);
+      font-weight: 600;
+    }
+
+    /* ── SPECIALS TICKER ── */
+    .specials-ticker {
+      background: var(--red-dark);
+      color: var(--yellow);
+      font-family: 'Permanent Marker', cursive;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 28s linear infinite;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .ticker-track span {
+      margin: 0 30px;
+      opacity: 0.9;
+    }
+
+    .ticker-sep {
+      color: rgba(245,197,24,0.4);
+      margin: 0 10px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: rgba(255,248,238,0.5);
+      text-align: center;
+      padding: 28px 20px;
       font-size: 12px;
-      color: #777;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    footer strong {
+      color: var(--yellow);
+      font-family: 'Alfa Slab One', serif;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 560px) {
+      nav a { font-size: 12px; padding: 12px 14px; }
+      .about-strip-inner { flex-direction: column; }
+      .about-icon { font-size: 38px; }
     }
   </style>
 </head>
-
 <body>
 
+<div class="checker-bar"></div>
+
 <header>
-  <h1>Translation & English Learning Lab</h1>
-  <p>翻訳の記録と、英語の小さな知識を積み上げる場所</p>
+  <div class="header-top">
+    <div>EST. 2024 · YOKOHAMA</div>
+    <div class="header-badge">🍔 NOW SERVING</div>
+    <div>OPEN 24/7</div>
+  </div>
+  <div class="header-main">
+    <span class="neon-tag">✦ Welcome to ✦</span>
+    <h1>Manga <span>Translation</span> Diner</h1>
+    <p class="header-sub">Where manga meets English — served fresh, no filler.</p>
+  </div>
 </header>
 
-<div class="container">
+<div class="burger-divider">
+  <span>🍟</span> ORDER UP! <span>·</span> TRANSLATIONS <span>·</span> ENGLISH TIPS <span>·</span> GALLERY <span>·</span> BLOG <span>🍔</span>
+</div>
 
-  <div class="card">
-    <h2>① 翻訳ログ</h2>
+<nav>
+  <a href="index.html" class="active">🏠 Home</a>
+  <a href="translation.html">📖 Translation Log</a>
+  <a href="blog.html">✍️ Blog</a>
+  <a href="gallery.html">🖼️ Gallery</a>
+</nav>
+
+<!-- TICKER -->
+<div class="specials-ticker">
+  <div class="ticker-track">
+    <span>🌟 TODAY'S SPECIAL: Fresh manga translations</span>
+    <span class="ticker-sep">///</span>
+    <span>📚 English mini-tips updated weekly</span>
+    <span class="ticker-sep">///</span>
+    <span>🎨 New art & comics in the Gallery</span>
+    <span class="ticker-sep">///</span>
+    <span>🍔 All served with love from Yokohama</span>
+    <span class="ticker-sep">///</span>
+    <span>🌟 TODAY'S SPECIAL: Fresh manga translations</span>
+    <span class="ticker-sep">///</span>
+    <span>📚 English mini-tips updated weekly</span>
+    <span class="ticker-sep">///</span>
+    <span>🎨 New art & comics in the Gallery</span>
+    <span class="ticker-sep">///</span>
+    <span>🍔 All served with love from Yokohama</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="open-sign">★ NOW OPEN ★</div>
+    <h2>Manga for <em>English Readers.</em><br>English Tips for <em>Manga Lovers.</em></h2>
     <p>
-      翻訳するときの試行錯誤・表現の選択・文化差のメモを残す場所。
-      「どう訳したか」「なぜそうしたか」を記録する。
+      This site has two missions: share Japanese manga stories with the English-speaking world,
+      and help Japanese learners pick up real, practical English — through the lens of manga culture.
+      Pull up a seat. It's all on the menu.
     </p>
-    <a class="button" href="translation.html">翻訳ログを見る</a>
+  </div>
+</section>
+
+<!-- MENU SECTION -->
+<div class="section-title">
+  <h2>Our Menu</h2>
+  <p>Three sections. All you can read.</p>
+  <div class="squiggle"></div>
+</div>
+
+<div class="menu-grid">
+
+  <!-- Card 1: Translation Log -->
+  <div class="menu-card">
+    <div class="menu-card-header">
+      <span class="menu-number">Item No. 01</span>
+      <h3>Translation Log</h3>
+      <span class="menu-emoji">📖</span>
+    </div>
+    <div class="menu-card-body">
+      <span class="menu-tag">日本語 · For Learners</span>
+      <p>
+        Behind-the-scenes notes on translating manga into English — why I chose certain words, 
+        how to handle cultural gaps, and the little decisions that make or break a good translation. 
+        Written in Japanese, aimed at fellow learners.
+      </p>
+      <a class="menu-btn" href="translation.html">→ Read the Log</a>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>② 英語ミニ知識ログ</h2>
-    <p>
-      英語表現・単語・ニュアンスの違いなどを短くまとめた学習メモ。
-      漫画翻訳に直結する実用寄りの知識中心。
-    </p>
-    <a class="button" href="english.html">英語メモを見る</a>
+  <!-- Card 2: Blog -->
+  <div class="menu-card">
+    <div class="menu-card-header">
+      <span class="menu-number">Item No. 02</span>
+      <h3>Blog</h3>
+      <span class="menu-emoji">✍️</span>
+    </div>
+    <div class="menu-card-body">
+      <span class="menu-tag">English · For Everyone</span>
+      <p>
+        Essays and thoughts on translation, language learning, and English culture — 
+        written in English. A place to share discoveries, frustrations, and everything in between 
+        on the road to fluency.
+      </p>
+      <a class="menu-btn" href="blog.html">→ Read the Blog</a>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>ブログ</h2>
-    <p>
-      英語と翻訳に関する日記
-    </p>
-    <a class="button" href="blog.html">ブログを見る</a>
-  </div>
-
-  <div class="card">
-    <h2>このサイトについて</h2>
-    <p>
-      このサイトは「翻訳」と「学習」を切り離さずに記録するための実験的な場所。
-      正解を出すためじゃなくて、判断の過程を残すことを目的にしている。
-    </p>
+  <!-- Card 3: Gallery -->
+  <div class="menu-card">
+    <div class="menu-card-header">
+      <span class="menu-number">Item No. 03</span>
+      <h3>Gallery</h3>
+      <span class="menu-emoji">🖼️</span>
+    </div>
+    <div class="menu-card-body">
+      <span class="menu-tag">English · Visual</span>
+      <p>
+        Illustrations and comics exploring English-speaking culture — 
+        holidays, everyday life, idioms brought to life. 
+        A visual supplement to help you <em>feel</em> the culture, not just study it.
+      </p>
+      <a class="menu-btn" href="gallery.html">→ Visit Gallery</a>
+    </div>
   </div>
 
 </div>
 
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <div class="about-strip-inner">
+    <div class="about-icon">🍔</div>
+    <div>
+      <h3>Why This Diner Exists</h3>
+      <p>
+        Two reasons, one site. First: Japanese manga deserves to be read by English speakers around the world — 
+        and good translation is how that happens. Second: the best way to learn English is through things you 
+        actually love. This site is built on both of those beliefs. No textbooks. No filler. Just real language, 
+        real culture, and real manga.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="checker-bar"></div>
+
 <footer>
-  © Manga Translation Lab
+  <strong>Manga Translation Diner</strong>
+  © 2024 · Yokohama, Japan · All translations are original work
 </footer>
 
 </body>
