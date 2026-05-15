@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Links & Contact · Manga Translation Diner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #D72B2B;
+      --red-dark: #A81E1E;
+      --yellow: #F5C518;
+      --yellow-light: #FFF3A3;
+      --cream: #FFF8EE;
+      --brown: #3B1F0A;
+      --tan: #E8C98A;
+      --white: #FFFDF7;
+      --green: #2C6B3A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* ── CHECKER ── */
+    .checker-bar {
+      height: 18px;
+      background-image: repeating-linear-gradient(
+        90deg,
+        var(--red) 0px, var(--red) 18px,
+        var(--yellow) 18px, var(--yellow) 36px
+      );
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--red);
+      padding: 24px 20px;
+      text-align: center;
+      border-bottom: 4px solid var(--brown);
+    }
+
+    .site-name {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    header h1 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: clamp(28px, 6vw, 52px);
+      color: #fff;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+    }
+
+    header h1 span { color: var(--yellow); }
+
+    header p {
+      font-family: 'Permanent Marker', cursive;
+      color: rgba(255,255,255,0.8);
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--yellow);
+      display: flex;
+      justify-content: center;
+      border-bottom: 4px solid var(--brown);
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      color: var(--brown);
+      text-decoration: none;
+      padding: 14px 24px;
+      letter-spacing: 0.05em;
+      transition: background 0.15s, color 0.15s;
+      border-right: 2px solid rgba(59,31,10,0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a:last-child { border-right: none; }
+    nav a:hover { background: var(--red); color: #fff; }
+    nav a.active { background: var(--red); color: #fff; }
+
+    /* ── MAIN ── */
+    .main-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      color: var(--brown);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.75;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--yellow) 0px, var(--yellow) 8px,
+        transparent 8px, transparent 14px
+      );
+    }
+
+    /* ── LINK GRID ── */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    /* ── LINK CARD ── */
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 10px;
+      box-shadow: 4px 4px 0 var(--brown);
+      padding: 14px 16px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: var(--red);
+      border-radius: 7px 0 0 7px;
+    }
+
+    .link-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--brown);
+    }
+
+    .link-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--yellow-light);
+      border: 2px solid var(--tan);
+      border-radius: 8px;
+    }
+
+    .link-text { flex: 1; min-width: 0; }
+
+    .link-name {
+      display: block;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      color: var(--brown);
+      margin-bottom: 2px;
+    }
+
+    .link-desc {
+      display: block;
+      font-size: 11px;
+      color: rgba(59,31,10,0.6);
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .link-arrow {
+      font-size: 22px;
+      color: var(--red);
+      flex-shrink: 0;
+      font-weight: 900;
+      transition: transform 0.2s;
+    }
+
+    .link-card:hover .link-arrow { transform: translateX(3px); }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 10px;
+      box-shadow: 6px 6px 0 var(--brown);
+      padding: 30px 32px;
+      margin-top: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: var(--yellow);
+    }
+
+    .form-intro {
+      font-size: 13px;
+      color: rgba(59,31,10,0.7);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-label {
+      display: block;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 12px;
+      color: var(--brown);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      opacity: 0.7;
+    }
+
+    .required { color: var(--red); }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: var(--cream);
+      border: 2.5px solid var(--tan);
+      border-radius: 6px;
+      color: var(--brown);
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(59,31,10,0.3);
+      font-weight: 600;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(215,43,43,0.12);
+    }
+
+    .form-textarea { resize: vertical; min-height: 140px; }
+
+    .field-error {
+      display: block;
+      font-size: 11px;
+      color: var(--red);
+      font-weight: 900;
+      margin-top: 5px;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      border: 2.5px solid var(--brown);
+      border-radius: 8px;
+      box-shadow: 3px 3px 0 var(--brown);
+      color: #fff;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: var(--red-dark);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--brown);
+    }
+
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .form-success {
+      background: #e8f5e9;
+      border: 2.5px solid var(--green);
+      border-radius: 8px;
+      padding: 16px 20px;
+      text-align: center;
+      color: var(--green);
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .form-success-icon { display: block; font-size: 24px; margin-bottom: 6px; }
+
+    .form-error-global {
+      background: #ffeaea;
+      border: 2.5px solid var(--red);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--brown);
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      margin-top: 28px;
+      padding: 10px 18px;
+      border: 2.5px solid var(--brown);
+      border-radius: 8px;
+      box-shadow: 3px 3px 0 var(--brown);
+      transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+      letter-spacing: 0.04em;
+    }
+
+    .back-link:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--brown);
+      background: var(--yellow-light);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: rgba(255,248,238,0.5);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      line-height: 1.9;
+    }
+
+    footer strong {
+      color: var(--yellow);
+      font-family: 'Alfa Slab One', serif;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 560px) {
+      nav a { font-size: 12px; padding: 12px 14px; }
+      .link-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="checker-bar"></div>
+
+<header>
+  <div class="site-name">Manga Translation Diner</div>
+  <h1>📮 <span>Links & Contact</span></h1>
+  <p>Find me around the web — or drop a message!</p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="translation.html">📖 Translation Log</a>
+  <a href="blog.html">✍️ Blog</a>
+  <a href="gallery.html">🖼️ Gallery</a>
+  <a href="contact.html" class="active">📮 Contact</a>
+</nav>
+
+<main class="main-wrap">
+
+  <p class="section-label">🎨 Manga & Illustration</p>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank" rel="noopener">
+      <div class="link-icon">📚</div>
+      <div class="link-text">
+        <span class="link-name">Jump Rookie</span>
+        <span class="link-desc">Original manga posted here</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://daysneo.com/author/Sam333333Sam/" target="_blank" rel="noopener">
+      <div class="link-icon">🌙</div>
+      <div class="link-text">
+        <span class="link-name">DaysNEO</span>
+        <span class="link-desc">Manga publishing platform</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">
+      <div class="link-icon">🎨</div>
+      <div class="link-text">
+        <span class="link-name">Pixiv</span>
+        <span class="link-desc">Fan art & illustration</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <p class="section-label">🦋 Social & Other</p>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+      <div class="link-icon">🦋</div>
+      <div class="link-text">
+        <span class="link-name">Bluesky</span>
+        <span class="link-desc">Updates & announcements</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
+      <div class="link-icon">✒️</div>
+      <div class="link-text">
+        <span class="link-name">Kakuyomu</span>
+        <span class="link-desc">Fiction & writing</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">
+      <div class="link-icon">🎬</div>
+      <div class="link-text">
+        <span class="link-name">YouTube (LilyPopi)</span>
+        <span class="link-desc">Video channel</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://lilipopi.github.io/lilypopins/" target="_blank" rel="noopener">
+      <div class="link-icon">🌸</div>
+      <div class="link-text">
+        <span class="link-name">LilyPopi Site</span>
+        <span class="link-desc">Separate website</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <p class="section-label">🍔 Azalea72's Websites</p>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
+      <div class="link-icon">📖</div>
+      <div class="link-text">
+        <span class="link-name">Story Review Site</span>
+        <span class="link-desc">Books, anime, movies, games & novels</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-english/" target="_blank" rel="noopener">
+      <div class="link-icon">🍔</div>
+      <div class="link-text">
+        <span class="link-name">English Site (You're here!)</span>
+        <span class="link-desc">For English speakers & learners</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-watercolor/" target="_blank" rel="noopener">
+      <div class="link-icon">☁️</div>
+      <div class="link-text">
+        <span class="link-name">Watercolor Site</span>
+        <span class="link-desc">Watercolor painting gallery</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <p class="section-label">📮 Send a Message</p>
+
+  <div class="form-card">
+    <p class="form-intro">
+      Questions, feedback, or just want to say hi? Send a message below.<br>
+      I'll reply by email as soon as I can. 🍔
+    </p>
+
+    <div data-fs-success class="form-success" style="display:none;">
+      <span class="form-success-icon">🎉</span>
+      <p>Message sent — thank you!</p>
+    </div>
+
+    <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+    <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+
+      <div class="form-group">
+        <label class="form-label" for="name">Name</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email <span class="required">*</span></label>
+        <input class="form-input" type="email" id="email" name="email" data-fs-field placeholder="example@email.com" required>
+        <span data-fs-error="email" class="field-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">Message <span class="required">*</span></label>
+        <textarea class="form-textarea" id="message" name="message" data-fs-field placeholder="Type your message here…" rows="6" required></textarea>
+        <span data-fs-error="message" class="field-error"></span>
+      </div>
+
+      <button class="form-submit" type="submit" data-fs-submit-btn>
+        📮 Send It!
+      </button>
+
+    </form>
+  </div>
+
+  <a class="back-link" href="index.html">← Back to Home</a>
+
+</main>
+
+<div class="checker-bar"></div>
+
+<footer>
+  <strong>Manga Translation Diner</strong>
+  Please do not use any images, text, or works on this site for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.
+</footer>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
