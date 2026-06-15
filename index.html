@@ -5,21 +5,20 @@
   <meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo" />
   <title>Azalea Manga Diner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Where manga meets English — served fresh, no filler. Comics, translations & English tips from Japan by Azalea72.">
 
   <!-- OGP -->
   <meta property="og:title" content="Azalea72 Manga Diner">
-  <meta property="og:description" content="Where manga meets English — served fresh, no filler. Comics, translations & English tips from Japan.">
+  <meta property="og:description" content="Where manga meets English — served fresh, no filler. Comics, translations &amp; English tips from Japan.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://azaleacreativeroom888.github.io/fan-english/">
-  <meta property="og:image" content="https://azaleacreativeroom888.github.io/fan-english/河童 英語_001.jpg">
+  <meta property="og:image" content="https://azaleacreativeroom888.github.io/fan-english/ogp.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Azalea72 Manga Diner">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Azalea72 Manga Diner">
-  <meta name="twitter:description" content="Where manga meets English — served fresh, no filler. Comics, translations & English tips from Japan.">
+  <meta name="twitter:description" content="Where manga meets English — served fresh, no filler. Comics, translations &amp; English tips from Japan.">
   <meta name="twitter:image" content="https://azaleacreativeroom888.github.io/fan-english/ogp.jpg">
 
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -33,7 +32,7 @@
       --brown: #3B1F0A;
       --tan: #E8C98A;
       --white: #FFFDF7;
-      --green: #2C6B3A;
+      --checker: #2B0A0A;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,7 +44,6 @@
       overflow-x: hidden;
     }
 
-    /* ── CHECKER ── */
     .checker-bar {
       height: 18px;
       background-image: repeating-linear-gradient(
@@ -55,10 +53,9 @@
       );
     }
 
-    /* ── HEADER ── */
     header {
       background: var(--red);
-      padding: 0 20px;
+      padding: 0 20px 0;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -68,9 +65,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
-        radial-gradient(circle at 80% 50%, rgba(0,0,0,0.1) 0%, transparent 60%);
+      background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 50%, rgba(0,0,0,0.1) 0%, transparent 60%);
     }
 
     .header-top {
@@ -95,7 +91,7 @@
       font-weight: 900;
     }
 
-    .header-main { padding: 20px 0 16px; position: relative; }
+    .header-main { padding: 20px 0 10px; position: relative; }
 
     .neon-tag {
       font-family: 'Permanent Marker', cursive;
@@ -112,6 +108,7 @@
       color: #fff;
       line-height: 1;
       text-shadow: 4px 4px 0 var(--red-dark), 6px 6px 0 rgba(0,0,0,0.3);
+      letter-spacing: -0.01em;
     }
 
     header h1 span { color: var(--yellow); }
@@ -123,7 +120,6 @@
       margin-top: 10px;
     }
 
-    /* ── BURGER DIVIDER ── */
     .burger-divider {
       background: var(--brown);
       padding: 10px 20px;
@@ -139,11 +135,12 @@
     }
     .burger-divider span { opacity: 0.6; }
 
-    /* ── NAV ── */
     nav {
       background: var(--yellow);
+      padding: 0;
       display: flex;
       justify-content: center;
+      gap: 0;
       border-bottom: 4px solid var(--brown);
       flex-wrap: wrap;
     }
@@ -153,7 +150,7 @@
       font-size: 14px;
       color: var(--brown);
       text-decoration: none;
-      padding: 14px 22px;
+      padding: 14px 24px;
       letter-spacing: 0.05em;
       transition: background 0.15s, color 0.15s;
       border-right: 2px solid rgba(59,31,10,0.2);
@@ -165,35 +162,9 @@
     nav a:last-child { border-right: none; }
     nav a:hover, nav a.active { background: var(--red); color: #fff; }
 
-    /* ── TICKER ── */
-    .specials-ticker {
-      background: var(--red-dark);
-      color: var(--yellow);
-      font-family: 'Permanent Marker', cursive;
-      font-size: 15px;
-      letter-spacing: 0.06em;
-      padding: 10px 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .ticker-track {
-      display: inline-block;
-      animation: ticker 28s linear infinite;
-    }
-
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    .ticker-track span { margin: 0 30px; opacity: 0.9; }
-    .ticker-sep { color: rgba(245,197,24,0.4); margin: 0 10px; }
-
-    /* ── HERO ── */
     .hero {
       background: var(--brown);
-      padding: 48px 20px;
+      padding: 50px 20px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -226,33 +197,39 @@
 
     .hero h2 {
       font-family: 'Alfa Slab One', serif;
-      font-size: clamp(24px, 5vw, 44px);
+      font-size: clamp(26px, 5vw, 46px);
       color: var(--white);
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     .hero h2 em { color: var(--yellow); font-style: normal; }
 
     .hero p {
       color: rgba(255,248,238,0.75);
-      font-size: 15px;
+      font-size: 16px;
       margin-top: 16px;
-      line-height: 1.8;
+      line-height: 1.7;
       font-weight: 600;
     }
 
-    /* ── SECTION TITLE ── */
-    .section-title-wrap {
+    .section-title {
       text-align: center;
       padding: 40px 20px 10px;
     }
 
-    .section-title-wrap h2 {
+    .section-title h2 {
       font-family: 'Alfa Slab One', serif;
-      font-size: 22px;
+      font-size: 28px;
       color: var(--red);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
+    }
+
+    .section-title p {
+      font-size: 14px;
+      color: rgba(59,31,10,0.6);
+      margin-top: 6px;
+      font-weight: 600;
     }
 
     .squiggle {
@@ -262,223 +239,177 @@
       margin: 10px auto 0;
     }
 
-    /* ── MANGA SLIDER ── */
-    .manga-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 20px 48px;
+    .menu-grid {
+      max-width: 960px;
+      margin: 30px auto 50px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
     }
 
-    .slider-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .slider-btn {
-      flex-shrink: 0;
-      width: 44px;
-      height: 80px;
+    .menu-card {
       background: #fff;
+      border-radius: 12px;
       border: 3px solid var(--brown);
-      border-radius: 8px;
-      box-shadow: 3px 3px 0 var(--brown);
-      color: var(--brown);
-      font-size: 26px;
-      cursor: pointer;
+      box-shadow: 6px 6px 0 var(--brown);
+      overflow: hidden;
+      transition: transform 0.18s, box-shadow 0.18s;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s, transform 0.12s, box-shadow 0.12s;
-      user-select: none;
-      font-family: 'Alfa Slab One', serif;
+      flex-direction: column;
     }
 
-    .slider-btn:hover {
-      background: var(--yellow);
+    .menu-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 var(--brown);
+    }
+
+    .menu-card-header {
+      background: var(--red);
+      padding: 18px 20px 14px;
+      position: relative;
+    }
+
+    .menu-card:nth-child(2) .menu-card-header { background: var(--brown); }
+    .menu-card:nth-child(3) .menu-card-header { background: #2C6B3A; }
+
+    .menu-number {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .menu-card-header h3 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 20px;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .menu-card-header .menu-emoji {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 36px;
+      opacity: 0.85;
+    }
+
+    .menu-card-body {
+      padding: 18px 20px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-tag {
+      display: inline-block;
+      background: var(--yellow-light);
+      color: var(--brown);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      border: 1.5px solid var(--tan);
+      margin-bottom: 10px;
+    }
+
+    .menu-card-body p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(59,31,10,0.8);
+      flex: 1;
+    }
+
+    .menu-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 11px 20px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border-radius: 8px;
+      border: 2.5px solid var(--brown);
+      box-shadow: 3px 3px 0 var(--brown);
+      transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+      text-align: center;
+    }
+
+    .menu-btn:hover {
+      background: var(--red-dark);
       transform: translate(-1px, -1px);
       box-shadow: 4px 4px 0 var(--brown);
     }
 
-    .slider-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: 3px 3px 0 var(--brown); }
+    .menu-card:nth-child(2) .menu-btn { background: var(--brown); }
+    .menu-card:nth-child(2) .menu-btn:hover { background: #2a1406; }
+    .menu-card:nth-child(3) .menu-btn { background: #2C6B3A; }
+    .menu-card:nth-child(3) .menu-btn:hover { background: #1f4d2a; }
 
-    .slider-window { overflow: hidden; flex: 1; }
-
-    .slider-track {
-      display: flex;
-      gap: 12px;
-      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .slide-item { flex-shrink: 0; width: 160px; }
-
-    .slide-item a { display: block; text-decoration: none; }
-
-    .slide-frame {
-      border: 3px solid var(--brown);
-      border-radius: 8px;
-      box-shadow: 4px 4px 0 var(--brown);
-      overflow: hidden;
-      position: relative;
-      background: var(--cream);
-      transition: transform 0.2s, box-shadow 0.2s;
-      aspect-ratio: 3/4;
-    }
-
-    .slide-item:hover .slide-frame {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--brown);
-      border-color: var(--red);
-    }
-
-    .slide-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s;
-    }
-
-    .slide-item:hover .slide-frame img { transform: scale(1.04); }
-
-    .slide-number {
-      text-align: center;
-      font-family: 'Alfa Slab One', serif;
-      font-size: 11px;
-      color: rgba(59,31,10,0.5);
-      margin-top: 7px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* ── SLIDER DOTS ── */
-    .slider-dots {
-      display: flex;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 18px;
-    }
-
-    .dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: rgba(59,31,10,0.15);
-      border: 2px solid var(--brown);
-      cursor: pointer;
-      transition: background 0.2s;
-      padding: 0;
-    }
-
-    .dot.active { background: var(--red); border-color: var(--red-dark); }
-
-    /* ── PAGE LINKS GRID ── */
-    .page-links {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 20px 48px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 14px;
-    }
-
-    .page-link-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      background: #fff;
-      border: 3px solid var(--brown);
-      border-radius: 10px;
-      box-shadow: 4px 4px 0 var(--brown);
-      padding: 14px 16px;
-      transition: transform 0.15s, box-shadow 0.15s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .page-link-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 5px;
-      background: var(--yellow);
-      border-radius: 7px 0 0 7px;
-    }
-
-    .page-link-card:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--brown);
-    }
-
-    .plc-icon {
-      font-size: 22px;
-      flex-shrink: 0;
-      width: 40px; height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--yellow-light);
-      border: 2px solid var(--tan);
-      border-radius: 8px;
-    }
-
-    .plc-text { flex: 1; min-width: 0; }
-
-    .plc-label {
-      display: block;
-      font-family: 'Alfa Slab One', serif;
-      font-size: 14px;
-      color: var(--brown);
-      margin-bottom: 2px;
-    }
-
-    .plc-desc {
-      display: block;
-      font-size: 11px;
-      color: rgba(59,31,10,0.6);
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    /* ── ABOUT STRIP ── */
     .about-strip {
       background: var(--yellow);
       border-top: 4px solid var(--brown);
       border-bottom: 4px solid var(--brown);
-      padding: 28px 20px;
+      padding: 30px 20px;
     }
 
     .about-strip-inner {
       max-width: 720px;
       margin: 0 auto;
       display: flex;
-      gap: 20px;
+      gap: 24px;
       align-items: flex-start;
     }
 
-    .about-icon { font-size: 48px; flex-shrink: 0; line-height: 1; }
+    .about-icon { font-size: 52px; flex-shrink: 0; line-height: 1; }
 
     .about-strip h3 {
       font-family: 'Alfa Slab One', serif;
-      font-size: 18px;
+      font-size: 20px;
       color: var(--brown);
       margin-bottom: 8px;
     }
 
     .about-strip p {
       font-size: 14px;
-      line-height: 1.75;
+      line-height: 1.7;
       color: rgba(59,31,10,0.85);
       font-weight: 600;
     }
 
-    /* ── COUNTER ── */
-    .counter-area {
-      text-align: center;
-      padding: 16px 20px;
+    .specials-ticker {
+      background: var(--red-dark);
+      color: var(--yellow);
+      font-family: 'Permanent Marker', cursive;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
-    /* ── FOOTER ── */
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 28s linear infinite;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .ticker-track span { margin: 0 30px; opacity: 0.9; }
+    .ticker-sep { color: rgba(245,197,24,0.4); margin: 0 10px; }
+
     footer {
       background: var(--brown);
       color: rgba(255,248,238,0.5);
@@ -486,8 +417,8 @@
       padding: 28px 20px;
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.06em;
-      line-height: 1.9;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     footer strong {
@@ -495,7 +426,7 @@
       font-family: 'Alfa Slab One', serif;
       font-size: 15px;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     /* ── SURVEY BUBBLE ── */
@@ -537,7 +468,6 @@
       display: none;
     }
 
-    /* ── SURVEY WINDOW ── */
     #survey-window {
       position: fixed;
       bottom: 96px; right: 28px;
@@ -649,7 +579,6 @@
       background: var(--yellow-light);
       border-color: var(--yellow);
       border-radius: 12px 12px 2px 12px;
-      color: var(--brown);
     }
 
     #survey-input-area {
@@ -679,7 +608,6 @@
     .survey-btn:hover, .survey-btn.selected {
       background: var(--yellow-light);
       border-color: var(--yellow);
-      color: var(--brown);
     }
 
     .survey-send-btn {
@@ -706,9 +634,8 @@
 
     @media (max-width: 560px) {
       nav a { font-size: 12px; padding: 12px 14px; }
-      .slide-item { width: 130px; }
       .about-strip-inner { flex-direction: column; }
-      .page-links { grid-template-columns: 1fr; }
+      .about-icon { font-size: 38px; }
       #survey-window { width: calc(100vw - 40px); right: 20px; }
       #survey-bubble { right: 20px; bottom: 20px; }
     }
@@ -747,7 +674,7 @@
   <div class="ticker-track">
     <span>🌟 TODAY'S SPECIAL: Fresh manga translations</span>
     <span class="ticker-sep">///</span>
-    <span>📚 English tips updated weekly</span>
+    <span>📚 English mini-tips updated weekly</span>
     <span class="ticker-sep">///</span>
     <span>🎨 New art & comics in the Gallery</span>
     <span class="ticker-sep">///</span>
@@ -755,7 +682,7 @@
     <span class="ticker-sep">///</span>
     <span>🌟 TODAY'S SPECIAL: Fresh manga translations</span>
     <span class="ticker-sep">///</span>
-    <span>📚 English tips updated weekly</span>
+    <span>📚 English mini-tips updated weekly</span>
     <span class="ticker-sep">///</span>
     <span>🎨 New art & comics in the Gallery</span>
     <span class="ticker-sep">///</span>
@@ -763,145 +690,80 @@
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="open-sign">★ NOW OPEN ★</div>
     <h2>Manga for <em>English Readers.</em><br>English Translation for <em>Manga Lovers.</em></h2>
     <p>
-      Hi! I'm Azalea72, a manga creator from Japan.<br>
-      This site shares my original manga in English,<br>
-      and offers real, practical English tips through the lens of manga culture.<br>
-      No AI used in my comics. Pull up a seat — it's all on the menu!
+      This site has two missions: share Azalea72's Manga with the English-speaking world,<br>
+      and help Japanese learners pick up real, practical English — through the lens of manga culture.<br>
+      Pull up a seat. It's all on the menu.
     </p>
   </div>
 </section>
 
-<!-- SLIDER -->
-<div class="section-title-wrap">
-  <h2>🍔 Click a Cover to Read</h2>
+<div class="section-title">
+  <h2>Our Menu</h2>
+  <p>Three sections. All you can read.</p>
   <div class="squiggle"></div>
 </div>
 
-<section class="manga-section" aria-label="Manga list">
-  <div class="slider-wrapper">
-    <button class="slider-btn" id="prevBtn" onclick="moveSlider(-1)" aria-label="Previous">‹</button>
+<div class="menu-grid">
 
-    <div class="slider-window">
-      <div class="slider-track" id="sliderTrack">
-
-        <div class="slide-item">
-          <a href="manga11-1.html" title="Original Manga No.11">
-            <div class="slide-frame"><img src="manga11-page1.jpg" alt="Original Manga No.11" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 11</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga4-1.html" title="Original Manga No.04">
-            <div class="slide-frame"><img src="manga4-page1-en.jpg" alt="Original Manga No.04" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 04</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga7-1.html" title="Original Manga No.07">
-            <div class="slide-frame"><img src="manga7-page1.jpg" alt="Original Manga No.07" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 07</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga1-1.html" title="Original Manga No.01">
-            <div class="slide-frame"><img src="manga1-thumb.jpg" alt="Original Manga No.01" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 01</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga2-1.html" title="Original Manga No.02">
-            <div class="slide-frame"><img src="illust12.jpg" alt="Original Manga No.02" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 02</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga9-1.html" title="Original Manga No.09">
-            <div class="slide-frame"><img src="manga9-page1.jpg" alt="Original Manga No.09" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 09</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga3-1.html" title="Original Manga No.03">
-            <div class="slide-frame"><img src="manga3-thumb.jpg" alt="Original Manga No.03" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 03</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga8-1.html" title="Original Manga No.08">
-            <div class="slide-frame"><img src="manga8-page1.jpg" alt="Original Manga No.08" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 08</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga5-1.html" title="Original Manga No.05">
-            <div class="slide-frame"><img src="manga5-page1.jpg" alt="Original Manga No.05" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 05</p>
-        </div>
-
-        <div class="slide-item">
-          <a href="manga6-1.html" title="Original Manga No.06">
-            <div class="slide-frame"><img src="manga6-page1.jpg" alt="Original Manga No.06" loading="lazy" width="160" height="213"></div>
-          </a>
-          <p class="slide-number">No. 06</p>
-        </div>
-
-      </div>
+  <div class="menu-card">
+    <div class="menu-card-header">
+      <span class="menu-number">Item No. 01</span>
+      <h3>Translation Log</h3>
+      <span class="menu-emoji">📖</span>
     </div>
-
-    <button class="slider-btn" id="nextBtn" onclick="moveSlider(1)" aria-label="Next">›</button>
+    <div class="menu-card-body">
+      <span class="menu-tag">日本語 · For Learners</span>
+      <p>
+        Behind-the-scenes notes on translating into English — why I chose certain words,
+        how to handle cultural gaps, and the little decisions that make or break a good translation.
+        Written in Japanese, aimed at fellow learners.
+      </p>
+      <a class="menu-btn" href="translation.html">→ Read the Log</a>
+    </div>
   </div>
 
-  <div class="slider-dots" id="dots"></div>
-</section>
+  <div class="menu-card">
+    <div class="menu-card-header">
+      <span class="menu-number">Item No. 02</span>
+      <h3>Blog</h3>
+      <span class="menu-emoji">✍️</span>
+    </div>
+    <div class="menu-card-body">
+      <span class="menu-tag">English · For Everyone</span>
+      <p>
+        Essays and thoughts on movies, books, and language learning — written in English.
+        Sharing reflections on stories, ideas, and everyday observations.
+        A journal of ongoing curiosity.
+      </p>
+      <a class="menu-btn" href="blog.html">→ Read the Blog</a>
+    </div>
+  </div>
 
-<!-- PAGE LINKS -->
-<nav class="page-links" aria-label="Site pages">
-  <a class="page-link-card" href="translation.html">
-    <div class="plc-icon">📖</div>
-    <div class="plc-text">
-      <span class="plc-label">Translation Log</span>
-      <span class="plc-desc">Behind-the-scenes translation notes (Japanese)</span>
+  <div class="menu-card">
+    <div class="menu-card-header">
+      <span class="menu-number">Item No. 03</span>
+      <h3>Gallery</h3>
+      <span class="menu-emoji">🖼️</span>
     </div>
-  </a>
-  <a class="page-link-card" href="blog.html">
-    <div class="plc-icon">✍️</div>
-    <div class="plc-text">
-      <span class="plc-label">Blog</span>
-      <span class="plc-desc">Essays on language, culture & manga</span>
+    <div class="menu-card-body">
+      <span class="menu-tag">English · For Everyone</span>
+      <p>
+        This website is primarily a showcase of my comics and illustrations.
+        Comics and illustrations for manga fans —
+        stories, culture, and everyday life in Japan, told in visual form.
+        For readers who enjoy visual storytelling.
+      </p>
+      <a class="menu-btn" href="gallery.html">→ Visit Gallery</a>
     </div>
-  </a>
-  <a class="page-link-card" href="gallery.html">
-    <div class="plc-icon">🖼️</div>
-    <div class="plc-text">
-      <span class="plc-label">Gallery</span>
-      <span class="plc-desc">Comics & illustrations</span>
-    </div>
-  </a>
-  <a class="page-link-card" href="contact.html">
-    <div class="plc-icon">📩</div>
-    <div class="plc-text">
-      <span class="plc-label">Contact & Links</span>
-      <span class="plc-desc">SNS & contact form</span>
-    </div>
-  </a>
-</nav>
+  </div>
 
-<!-- ABOUT STRIP -->
+</div>
+
 <div class="about-strip">
   <div class="about-strip-inner">
     <div class="about-icon">🍔</div>
@@ -913,9 +775,9 @@
         actually love. This site is built on both of those beliefs. No textbooks. No filler. Just real language,
         real culture, and real manga.
       </p>
-      <!-- FC2カウンター -->
-      <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=89515970"></script>
-      <noscript><img src="//counter1.fc2.com/counter_img.php?id=89515970" /></noscript>
+      <!-- FC2カウンター ここから -->
+      <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=89515970"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=89515970" /></noscript>
+      <!-- FC2カウンター ここまで -->
     </div>
   </div>
 </div>
@@ -924,8 +786,7 @@
 
 <footer>
   <strong>Azalea's Manga Diner</strong>
-  Please do not use any images, text, or works on this site for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.<br>
-  © 2024 Azalea72 All Rights Reserved.
+  © 2024 · Japan · All translations are original work
 </footer>
 
 <!-- SURVEY BUBBLE -->
@@ -946,57 +807,6 @@
 </div>
 
 <script>
-  /* ── SLIDER ── */
-  const ITEM_WIDTH = 172;
-  let currentIndex = 0;
-  const items = document.querySelectorAll('.slide-item');
-  const totalItems = items.length;
-  const track = document.getElementById('sliderTrack');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsEl = document.getElementById('dots');
-
-  function getVisible() {
-    return Math.max(1, Math.floor(document.querySelector('.slider-window').offsetWidth / ITEM_WIDTH));
-  }
-
-  function getMaxIndex() {
-    return Math.max(0, totalItems - getVisible());
-  }
-
-  function buildDots() {
-    dotsEl.innerHTML = '';
-    const pages = Math.ceil(totalItems / getVisible());
-    for (let i = 0; i < pages; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'dot';
-      dot.setAttribute('aria-label', 'Page ' + (i + 1));
-      dot.onclick = () => goTo(i * getVisible());
-      dotsEl.appendChild(dot);
-    }
-    updateDots();
-  }
-
-  function updateDots() {
-    const page = Math.floor(currentIndex / Math.max(1, getVisible()));
-    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === page));
-  }
-
-  function goTo(idx) {
-    currentIndex = Math.max(0, Math.min(idx, getMaxIndex()));
-    track.style.transform = 'translateX(' + (-(currentIndex * ITEM_WIDTH)) + 'px)';
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex >= getMaxIndex();
-    updateDots();
-  }
-
-  function moveSlider(dir) { goTo(currentIndex + dir * getVisible()); }
-
-  buildDots();
-  goTo(0);
-  window.addEventListener('resize', () => { buildDots(); goTo(Math.min(currentIndex, getMaxIndex())); });
-
-  /* ── SURVEY ── */
   let surveyOpen = false;
   let selectedRating = null;
   let surveyDone = false;
