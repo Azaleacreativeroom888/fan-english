@@ -5,6 +5,24 @@
   <meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo" />
   <title>Azalea Manga Diner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- OGP / SNSシェア用 -->
+  <meta property="og:title" content="Azalea72 Manga Diner">
+  <meta property="og:description" content="Where manga meets English — served fresh, no filler. Comics, translations &amp; English tips from Japan.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://azaleacreativeroom888.github.io/fan-english/">
+  <meta property="og:image" content="https://azaleacreativeroom888.github.io/fan-english/ogp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Azalea72 Manga Diner">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Azalea72 Manga Diner">
+  <meta name="twitter:description" content="Where manga meets English — served fresh, no filler. Comics, translations &amp; English tips from Japan.">
+  <meta name="twitter:image" content="https://azaleacreativeroom888.github.io/fan-english/ogp.jpg">
+
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -28,7 +46,6 @@
       overflow-x: hidden;
     }
 
-    /* ── CHECKERBOARD STRIPE ── */
     .checker-bar {
       height: 18px;
       background-image: repeating-linear-gradient(
@@ -38,7 +55,6 @@
       );
     }
 
-    /* ── HEADER ── */
     header {
       background: var(--red);
       padding: 0 20px 0;
@@ -100,9 +116,7 @@
       letter-spacing: -0.01em;
     }
 
-    header h1 span {
-      color: var(--yellow);
-    }
+    header h1 span { color: var(--yellow); }
 
     .header-sub {
       font-family: 'Permanent Marker', cursive;
@@ -111,7 +125,6 @@
       margin-top: 10px;
     }
 
-    /* ── BURGER DIVIDER ── */
     .burger-divider {
       background: var(--brown);
       padding: 10px 20px;
@@ -126,11 +139,8 @@
       overflow: hidden;
     }
 
-    .burger-divider span {
-      opacity: 0.6;
-    }
+    .burger-divider span { opacity: 0.6; }
 
-    /* ── NAV ── */
     nav {
       background: var(--yellow);
       padding: 0;
@@ -156,13 +166,8 @@
     }
 
     nav a:last-child { border-right: none; }
+    nav a:hover, nav a.active { background: var(--red); color: #fff; }
 
-    nav a:hover, nav a.active {
-      background: var(--red);
-      color: #fff;
-    }
-
-    /* ── HERO BANNER ── */
     .hero {
       background: var(--brown);
       padding: 50px 20px;
@@ -207,10 +212,7 @@
       line-height: 1.2;
     }
 
-    .hero h2 em {
-      color: var(--yellow);
-      font-style: normal;
-    }
+    .hero h2 em { color: var(--yellow); font-style: normal; }
 
     .hero p {
       color: rgba(255,248,238,0.75);
@@ -220,7 +222,6 @@
       font-weight: 600;
     }
 
-    /* ── SECTION TITLE ── */
     .section-title {
       text-align: center;
       padding: 40px 20px 10px;
@@ -249,7 +250,6 @@
       margin: 10px auto 0;
     }
 
-    /* ── MENU GRID ── */
     .menu-grid {
       max-width: 960px;
       margin: 30px auto 50px;
@@ -366,7 +366,6 @@
     .menu-card:nth-child(3) .menu-btn { background: #2C6B3A; }
     .menu-card:nth-child(3) .menu-btn:hover { background: #1f4d2a; }
 
-    /* ── ABOUT STRIP ── */
     .about-strip {
       background: var(--yellow);
       border-top: 4px solid var(--brown);
@@ -382,11 +381,7 @@
       align-items: flex-start;
     }
 
-    .about-icon {
-      font-size: 52px;
-      flex-shrink: 0;
-      line-height: 1;
-    }
+    .about-icon { font-size: 52px; flex-shrink: 0; line-height: 1; }
 
     .about-strip h3 {
       font-family: 'Alfa Slab One', serif;
@@ -402,7 +397,6 @@
       font-weight: 600;
     }
 
-    /* ── SPECIALS TICKER ── */
     .specials-ticker {
       background: var(--red-dark);
       color: var(--yellow);
@@ -424,17 +418,9 @@
       to { transform: translateX(-50%); }
     }
 
-    .ticker-track span {
-      margin: 0 30px;
-      opacity: 0.9;
-    }
+    .ticker-track span { margin: 0 30px; opacity: 0.9; }
+    .ticker-sep { color: rgba(245,197,24,0.4); margin: 0 10px; }
 
-    .ticker-sep {
-      color: rgba(245,197,24,0.4);
-      margin: 0 10px;
-    }
-
-    /* ── FOOTER ── */
     footer {
       background: var(--brown);
       color: rgba(255,248,238,0.5);
@@ -490,7 +476,6 @@
   <a href="contact.html">📩 Contact</a>
 </nav>
 
-<!-- TICKER -->
 <div class="specials-ticker">
   <div class="ticker-track">
     <span>🌟 TODAY'S SPECIAL: Fresh manga translations</span>
@@ -511,20 +496,18 @@
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="open-sign">★ NOW OPEN ★</div>
-    <h2>Manga for <em>English Readers.</em><br>English Traslation for <em>Manga Lovers.</em></h2>
+    <h2>Manga for <em>English Readers.</em><br>English Translation for <em>Manga Lovers.</em></h2>
     <p>
       This site has two missions: share Azalea72's Manga with the English-speaking world,<br>
       and help Japanese learners pick up real, practical English — through the lens of manga culture.<br>
-      Pull up a seat. It's all on the menu.<br>
+      Pull up a seat. It's all on the menu.
     </p>
   </div>
 </section>
 
-<!-- MENU SECTION -->
 <div class="section-title">
   <h2>Our Menu</h2>
   <p>Three sections. All you can read.</p>
@@ -533,7 +516,6 @@
 
 <div class="menu-grid">
 
-  <!-- Card 1: Translation Log -->
   <div class="menu-card">
     <div class="menu-card-header">
       <span class="menu-number">Item No. 01</span>
@@ -551,7 +533,6 @@
     </div>
   </div>
 
-  <!-- Card 2: Blog -->
   <div class="menu-card">
     <div class="menu-card-header">
       <span class="menu-number">Item No. 02</span>
@@ -569,7 +550,6 @@
     </div>
   </div>
 
-  <!-- Card 3: Gallery -->
   <div class="menu-card">
     <div class="menu-card-header">
       <span class="menu-number">Item No. 03</span>
@@ -590,7 +570,6 @@
 
 </div>
 
-<!-- ABOUT STRIP -->
 <div class="about-strip">
   <div class="about-strip-inner">
     <div class="about-icon">🍔</div>
@@ -602,11 +581,10 @@
         actually love. This site is built on both of those beliefs. No textbooks. No filler. Just real language, 
         real culture, and real manga.
       </p>
-      
+
       <!-- FC2カウンター ここから -->
-<script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=89515970"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=89515970" /></noscript>
-<!-- FC2カウンター ここまで -->
-      
+      <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=89515970"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=89515970" /></noscript>
+      <!-- FC2カウンター ここまで -->
     </div>
   </div>
 </div>
