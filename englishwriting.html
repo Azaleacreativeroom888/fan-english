@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ライティング勉強ブログ · Manga Translation Diner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #D72B2B;
+      --red-dark: #A81E1E;
+      --yellow: #F5C518;
+      --yellow-light: #FFF3A3;
+      --cream: #FFF8EE;
+      --brown: #3B1F0A;
+      --tan: #E8C98A;
+      --white: #FFFDF7;
+      --green: #2C6B3A;
+      --purple: #5a2a7a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; background-color: var(--cream); color: var(--brown); overflow-x: hidden; }
+    .checker-bar { height: 18px; background-image: repeating-linear-gradient(90deg, var(--red) 0px, var(--red) 18px, var(--yellow) 18px, var(--yellow) 36px); }
+    header { background: var(--purple); padding: 24px 20px; text-align: center; border-bottom: 4px solid var(--brown); }
+    .site-name { font-family: 'Alfa Slab One', serif; font-size: 13px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+    header h1 { font-family: 'Alfa Slab One', serif; font-size: clamp(26px, 5vw, 46px); color: #fff; text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    header h1 span { color: var(--yellow); }
+    header p { font-family: 'Permanent Marker', cursive; color: rgba(255,255,255,0.75); margin-top: 8px; font-size: 14px; }
+    nav { background: var(--yellow); display: flex; justify-content: center; border-bottom: 4px solid var(--brown); flex-wrap: wrap; }
+    nav a { font-family: 'Alfa Slab One', serif; font-size: 14px; color: var(--brown); text-decoration: none; padding: 14px 24px; letter-spacing: 0.05em; transition: background 0.15s, color 0.15s; border-right: 2px solid rgba(59,31,10,0.2); display: flex; align-items: center; gap: 6px; }
+    nav a:last-child { border-right: none; }
+    nav a:hover { background: var(--red); color: #fff; }
+    .container { display: flex; max-width: 1060px; margin: 36px auto 80px; padding: 0 20px; gap: 28px; align-items: flex-start; }
+    .main { flex: 3; min-width: 0; }
+    .blog-card { background: #fff; border: 3px solid var(--brown); border-radius: 10px; box-shadow: 5px 5px 0 var(--brown); margin-bottom: 24px; overflow: hidden; transition: transform 0.18s, box-shadow 0.18s; position: relative; }
+    .blog-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 6px; background: var(--purple); border-radius: 7px 0 0 7px; }
+    .blog-card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--brown); }
+    .card-content { padding: 20px 24px 18px; }
+    .card-date { font-family: 'Alfa Slab One', serif; font-size: 11px; color: rgba(59,31,10,0.45); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .card-date::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--purple); flex-shrink: 0; }
+    .card-title { font-family: 'Alfa Slab One', serif; font-size: 18px; color: var(--brown); margin-bottom: 12px; line-height: 1.35; }
+    .card-body { font-size: 13.5px; color: rgba(59,31,10,0.75); line-height: 1.85; font-weight: 400; }
+    .card-img { width: 100%; max-height: 340px; object-fit: cover; display: block; border-top: 3px solid var(--brown); }
+    .sidebar { flex: 1; min-width: 200px; }
+    .sidebar-block { background: #fff; border: 3px solid var(--brown); border-radius: 10px; box-shadow: 5px 5px 0 var(--brown); padding: 20px; margin-bottom: 20px; position: relative; overflow: hidden; }
+    .sidebar-block::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 6px; background: var(--yellow); border-radius: 7px 0 0 7px; }
+    .sidebar-block h3 { font-family: 'Alfa Slab One', serif; font-size: 13px; color: var(--brown); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px dashed var(--tan); }
+    .sidebar-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--brown); font-size: 13px; font-weight: 900; padding: 9px 10px; border-radius: 6px; border: 2px solid transparent; transition: all 0.15s; margin-bottom: 6px; }
+    .sidebar-link::before { content: '▶'; font-size: 8px; color: var(--red); flex-shrink: 0; }
+    .sidebar-link:hover { background: var(--yellow-light); border-color: var(--tan); padding-left: 14px; }
+    .sidebar-link.current { background: var(--yellow-light); border-color: var(--tan); }
+    footer { background: var(--brown); color: rgba(255,248,238,0.5); text-align: center; padding: 28px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; line-height: 1.9; }
+    footer strong { color: var(--yellow); font-family: 'Alfa Slab One', serif; font-size: 15px; display: block; margin-bottom: 8px; }
+    @media (max-width: 720px) { nav a { font-size: 12px; padding: 12px 14px; } .container { flex-direction: column; padding: 0 16px 60px; } .sidebar { width: 100%; } }
+  </style>
+</head>
+<body>
+
+<div class="checker-bar"></div>
+<header>
+  <div class="site-name">Manga Translation Diner</div>
+  <h1>✏️ <span>ライティング勉強ブログ</span></h1>
+  <p>英語ライティングの練習記録</p>
+</header>
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="translation.html">📖 Translation Log</a>
+  <a href="blog.html">✍️ Blog</a>
+  <a href="gallery.html">🖼️ Gallery</a>
+  <a href="contact.html">📩 Contact</a>
+</nav>
+
+<div class="container">
+  <main class="main">
+
+    <!-- 記事をここに追加 -->
+    <article class="blog-card">
+      <div class="card-content">
+        <p class="card-date">2026年7月</p>
+        <h2 class="card-title">ライティング練習スタート</h2>
+        <p class="card-body">勉強記録をここに書いていきます。</p>
+      </div>
+    </article>
+
+  </main>
+  <aside class="sidebar">
+    <div class="sidebar-block">
+      <h3>📚 勉強ブログ</h3>
+      <a class="sidebar-link" href="blog-eiken.html">英検勉強ブログ</a>
+      <a class="sidebar-link" href="blog-toeic.html">TOEIC勉強ブログ</a>
+      <a class="sidebar-link current" href="blog-writing.html">ライティング勉強ブログ</a>
+    </div>
+  </aside>
+</div>
+
+<div class="checker-bar"></div>
+<footer>
+  <strong>Manga Translation Diner</strong>
+  Please do not use any images, text, or works on this site for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.
+</footer>
+</body>
+</html>
