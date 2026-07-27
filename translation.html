@@ -70,7 +70,6 @@
 
     nav {
       background: var(--yellow);
-      padding: 0;
       display: flex;
       justify-content: center;
       border-bottom: 4px solid var(--brown);
@@ -95,197 +94,25 @@
     nav a:hover { background: var(--red); color: #fff; }
     nav a.active { background: var(--red); color: #fff; }
 
-    /* ── FILTER BAR ── */
-    .filter-bar {
-      max-width: 960px;
-      margin: 30px auto 0;
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      max-width: 1060px;
+      margin: 36px auto 80px;
       padding: 0 20px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
+      gap: 28px;
+      align-items: flex-start;
     }
 
-    .filter-label {
-      font-family: 'Alfa Slab One', serif;
-      font-size: 13px;
-      color: var(--brown);
-      letter-spacing: 0.05em;
-      opacity: 0.7;
-    }
-
-    .filter-btn {
-      padding: 7px 16px;
-      background: #fff;
-      border: 2.5px solid var(--brown);
-      border-radius: 30px;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 13px;
-      color: var(--brown);
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s, box-shadow 0.15s;
-      box-shadow: 2px 2px 0 var(--brown);
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--red);
-      color: #fff;
-      border-color: var(--red-dark);
-      box-shadow: 2px 2px 0 var(--red-dark);
-    }
-
-    .filter-btn.active { background: var(--green); border-color: #1f4d2a; box-shadow: 2px 2px 0 #1f4d2a; }
-
-    /* ── GALLERY GRID ── */
-    .gallery-section {
-      max-width: 960px;
-      margin: 24px auto 60px;
-      padding: 0 20px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 22px;
-    }
-
-    .gallery-card {
-      background: #fff;
-      border: 3px solid var(--brown);
-      border-radius: 10px;
-      box-shadow: 5px 5px 0 var(--brown);
-      overflow: hidden;
-      transition: transform 0.18s, box-shadow 0.18s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .gallery-card:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 7px 7px 0 var(--brown);
-    }
-
-    /* Illustrated placeholders using CSS art */
-    .gallery-art {
-      width: 100%;
-      aspect-ratio: 4/3;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .gallery-art svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .gallery-info {
-      padding: 14px 16px 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .gallery-tag {
-      display: inline-block;
-      background: var(--yellow-light);
-      color: var(--brown);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 20px;
-      border: 1.5px solid var(--tan);
-      margin-bottom: 8px;
-      align-self: flex-start;
-    }
-
-    .gallery-info h3 {
-      font-family: 'Alfa Slab One', serif;
-      font-size: 16px;
-      color: var(--brown);
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-
-    .gallery-info p {
-      font-size: 12.5px;
-      line-height: 1.6;
-      color: rgba(59,31,10,0.7);
-      flex: 1;
-    }
-
-    /* ── SUBMIT CARD ── */
-    .submit-banner {
-      background: var(--red);
-      border: 3px solid var(--brown);
-      border-radius: 10px;
-      box-shadow: 5px 5px 0 var(--brown);
-      padding: 28px 24px;
-      text-align: center;
-      margin-top: 36px;
-    }
-
-    .submit-banner h3 {
-      font-family: 'Alfa Slab One', serif;
-      font-size: 22px;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .submit-banner p {
-      color: rgba(255,255,255,0.85);
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .coming-badge {
-      display: inline-block;
-      background: var(--yellow);
-      color: var(--brown);
-      font-family: 'Alfa Slab One', serif;
-      font-size: 14px;
-      padding: 8px 20px;
-      border-radius: 30px;
-      border: 2.5px solid var(--brown);
-      box-shadow: 3px 3px 0 var(--brown);
-      letter-spacing: 0.04em;
-    }
-
-    footer {
-      background: var(--brown);
-      color: rgba(255,248,238,0.5);
-      text-align: center;
-      padding: 28px 20px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    footer strong {
-      color: var(--yellow);
-      font-family: 'Alfa Slab One', serif;
-      font-size: 15px;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    /* ── CONTAINER ── */
-    .container {
-      max-width: 760px;
-      margin: 44px auto 64px;
-      padding: 0 20px;
+    /* ── MAIN (entry cards) ── */
+    .main {
+      flex: 3;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 24px;
     }
- 
+
     /* ── ENTRY CARD ── */
     .entry-card {
       background: var(--white);
@@ -296,19 +123,23 @@
       transition: transform 0.15s, box-shadow 0.15s;
       animation: fadeUp 0.4s ease both;
     }
- 
+
     .entry-card:hover {
       transform: translate(-2px, -2px);
       box-shadow: 7px 7px 0 var(--brown);
     }
- 
+
     .entry-card:nth-child(1){animation-delay:0.05s}
     .entry-card:nth-child(2){animation-delay:0.10s}
     .entry-card:nth-child(3){animation-delay:0.15s}
     .entry-card:nth-child(4){animation-delay:0.20s}
     .entry-card:nth-child(5){animation-delay:0.25s}
- 
-    /* カードタイトルバー */
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .entry-header {
       background: var(--yellow);
       border-bottom: 3px solid var(--brown);
@@ -317,19 +148,19 @@
       align-items: center;
       gap: 10px;
     }
- 
+
     .entry-header h2 {
-      font-family: 'Bangers', cursive;
-      font-size: 20px;
-      letter-spacing: 1px;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 18px;
+      letter-spacing: 0.02em;
       color: var(--brown);
       line-height: 1.2;
       flex: 1;
     }
- 
+
     .entry-tag {
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       background: var(--brown);
@@ -337,54 +168,105 @@
       padding: 3px 10px;
       border-radius: 4px;
       white-space: nowrap;
+      flex-shrink: 0;
     }
- 
-    /* セクション（ラベル＋テキスト） */
-    .entry-body {
-      padding: 0;
-    }
- 
+
+    .entry-body { padding: 0; }
+
     .section {
       padding: 14px 18px;
       border-bottom: 2px dashed rgba(59,31,14,0.15);
     }
- 
-    .section:last-child {
-      border-bottom: none;
-    }
- 
+
+    .section:last-child { border-bottom: none; }
+
     .section-label {
-      font-family: 'Bangers', cursive;
-      font-size: 13px;
-      letter-spacing: 2px;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
       color: var(--red);
       text-transform: uppercase;
       margin-bottom: 6px;
     }
- 
+
     .section p {
-      font-size: 14.5px;
-      line-height: 1.8;
+      font-size: 14px;
+      line-height: 1.85;
       color: #4a2c10;
+      font-weight: 400;
     }
- 
-    .section p strong {
-      color: var(--red);
-      font-weight: 800;
-    }
- 
-    /* 判断メモは少し背景を変えて目立たせる */
-    .section.memo {
-      background: #fffbf0;
-    }
- 
-    .section.memo .section-label {
-      color: #8b5e2a;
-    }
- 
+
+    .section p strong { color: var(--red); font-weight: 900; }
+
+    .section.memo { background: #fffbf0; }
+
+    .section.memo .section-label { color: #8b5e2a; }
+
     .section.memo p {
       font-size: 13.5px;
       color: #6b4020;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar { flex: 1; min-width: 200px; }
+
+    .sidebar-block {
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 10px;
+      box-shadow: 5px 5px 0 var(--brown);
+      padding: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sidebar-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 6px;
+      background: var(--yellow);
+      border-radius: 7px 0 0 7px;
+    }
+
+    .sidebar-block h3 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      color: var(--brown);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed var(--tan);
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 13px;
+      font-weight: 900;
+      padding: 9px 10px;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      transition: all 0.15s;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-link::before {
+      content: '▶';
+      font-size: 8px;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+
+    .sidebar-link:hover {
+      background: var(--yellow-light);
+      border-color: var(--tan);
+      padding-left: 14px;
     }
 
     /* ── FOOTER ── */
@@ -407,21 +289,21 @@
       margin-bottom: 6px;
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 720px) {
       nav a { font-size: 12px; padding: 12px 14px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .layout { flex-direction: column; padding: 0 16px 60px; }
+      .sidebar { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  
 <div class="checker-bar"></div>
 
 <header>
   <div class="site-name">Manga Translation Diner</div>
   <h1>📖 <span>Translation</span></h1>
-  <p>English culture, illustrated. Comics, art & visual notes.</p>
+  <p>翻訳の記録と、英語ミニ知識を積み上げる場所。</p>
 </header>
 
 <nav>
@@ -432,274 +314,270 @@
   <a href="contact.html">📩 Contact</a>
 </nav>
 
+<div class="layout">
 
-<body>
+  <!-- ── MAIN ── -->
+  <main class="main">
 
-<div class="container">
-
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>Broccoli Hair</h2>
-      <span class="entry-tag">英単語</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>broccoli hair（ブロッコリーみたいな髪）＝ダサい髪型</p>
-        <p>からかうときに頻繁に使う。</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>Broccoli Hair</h2>
+        <span class="entry-tag">英単語</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>broccoli hair（ブロッコリーみたいな髪）＝ダサい髪型</p>
+          <p>からかうときに頻繁に使う。</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>Quagmire</h2>
-      <span class="entry-tag">英単語</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>「quagmire」＝「ぬかるみ」「泥沼」（恋愛などでも使う）</p>
-        <p>例：The troops were stuck in a quagmire.（部隊は泥沼にはまった）</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>Quagmire</h2>
+        <span class="entry-tag">英単語</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>「quagmire」＝「ぬかるみ」「泥沼」（恋愛などでも使う）</p>
+          <p>例：The troops were stuck in a quagmire.（部隊は泥沼にはまった）</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>Tramp Stamp</h2>
-      <span class="entry-tag">英単語</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>腰の低い位置に入れるタトゥーを冗談っぽく tramp stamp と呼ぶ。</p>
-        <p>つまり直訳すれば「軽い女の判子」みたいな、かなり意地悪な呼び名。</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>Tramp Stamp</h2>
+        <span class="entry-tag">英単語</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>腰の低い位置に入れるタトゥーを冗談っぽく tramp stamp と呼ぶ。</p>
+          <p>つまり直訳すれば「軽い女の判子」みたいな、かなり意地悪な呼び名。</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>Mr. Miyagi</h2>
-      <span class="entry-tag">英単語</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>Mr. Miyagi（ミスター・ミヤギ）は、映画 ベスト・キッド に出てくる、主人公ダニエルの師匠みたいな人物。演じたのは パット・モリタ。</p>
-        <p>英語圏では、「静かで賢い年上の武術の師匠」みたいな比喩で名前が出ることがある。</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>Mr. Miyagi</h2>
+        <span class="entry-tag">英単語</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>Mr. Miyagi（ミスター・ミヤギ）は、映画 ベスト・キッド に出てくる、主人公ダニエルの師匠みたいな人物。演じたのは パット・モリタ。</p>
+          <p>英語圏では、「静かで賢い年上の武術の師匠」みたいな比喩で名前が出ることがある。</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>stigma</h2>
-      <span class="entry-tag">英単語</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>stigma（スティグマ）は、「ある特徴や立場に対して、社会が勝手に“悪いもの・恥ずかしいもの・普通じゃないもの”として貼るマイナスの印象」</p>
-        <p>social stigma（社会的な偏見・烙印）  the stigma around mental illness（精神疾患をめぐる偏見）</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>stigma</h2>
+        <span class="entry-tag">英単語</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>stigma（スティグマ）は、「ある特徴や立場に対して、社会が勝手に"悪いもの・恥ずかしいもの・普通じゃないもの"として貼るマイナスの印象」</p>
+          <p>social stigma（社会的な偏見・烙印）　the stigma around mental illness（精神疾患をめぐる偏見）</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>サー・エドモンド・パーシヴァル・ヒラリー</h2>
-      <span class="entry-tag">ミニ知識</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>「ママと恋に落ちるまで」で「エベレストにあるサー・エドモンド・パーシヴァル・ヒラリーのフラッグを取ることなんて無理」という英文がでてきた。</p>
-        <p>サー・エドモンド・パーシヴァル・ヒラリー（Sir Edmund Percival Hillary） ＝ ニュージーランドの登山家、冒険家。</p>
-        <p>1953年5月29日午前11時30分（ネパール時間）、テンジン・ノルゲイと共に、人類初となるエベレスト山頂到達に成功した。（Wikipedia）</p>
-        <p>「エベレストにあるサー・エドモンド・パーシヴァル・ヒラリーのフラッグを取ることなんて無理」は、ゲーム内でいう“そんな高難度ミッション、ヒラリーでも呼ばないと無理だろ”みたいに会話で使われる。</p>
-        <p>ヒラリー本人は「不可能の象徴」というより、すでに不可能そうなことを達成した人。</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>サー・エドモンド・パーシヴァル・ヒラリー</h2>
+        <span class="entry-tag">ミニ知識</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>「ママと恋に落ちるまで」で「エベレストにあるサー・エドモンド・パーシヴァル・ヒラリーのフラッグを取ることなんて無理」という英文がでてきた。</p>
+          <p>サー・エドモンド・パーシヴァル・ヒラリー（Sir Edmund Percival Hillary） ＝ ニュージーランドの登山家、冒険家。</p>
+          <p>1953年5月29日午前11時30分（ネパール時間）、テンジン・ノルゲイと共に、人類初となるエベレスト山頂到達に成功した。（Wikipedia）</p>
+          <p>「エベレストにあるサー・エドモンド・パーシヴァル・ヒラリーのフラッグを取ることなんて無理」は、ゲーム内でいう"そんな高難度ミッション、ヒラリーでも呼ばないと無理だろ"みたいに会話で使われる。</p>
+          <p>ヒラリー本人は「不可能の象徴」というより、すでに不可能そうなことを達成した人。</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>「このセリフどう訳す問題」</h2>
-      <span class="entry-tag">翻訳</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">原文（ムラサキキリンのチャーリーは様子が変 / デイヴィッド・D・レヴァイン）</div>
-        <p>Time. How it passes, from moment to moment. Haven't you ever noticed how some things change when you aren't looking at them?</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>「このセリフどう訳す問題」</h2>
+        <span class="entry-tag">翻訳</span>
       </div>
-      <div class="section">
-        <div class="section-label">翻訳</div>
-        <p>時間だ。どうやって時間が刻一刻と過ぎていくのか。見ていない隙になにかが変わったことに気が付いたことはないか？</p>
-        <p>⇓　（修正）</p>
-        <p>時間だ。時間が瞬間から瞬間へと、どう過ぎていくのか。見ていない隙になにかが変わることに気が付いたことはないか？</p>
-      </div>
-      <div class="section memo">
-        <div class="section-label">📝 判断メモ</div>
-        <p>
-          「moment to moment」は「瞬間から瞬間へと」が正しい。<br>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">原文（ムラサキキリンのチャーリーは様子が変 / デイヴィッド・D・レヴァイン）</div>
+          <p>Time. How it passes, from moment to moment. Haven't you ever noticed how some things change when you aren't looking at them?</p>
+        </div>
+        <div class="section">
+          <div class="section-label">翻訳</div>
+          <p>時間だ。時間が瞬間から瞬間へと、どう過ぎていくのか。見ていない隙になにかが変わることに気が付いたことはないか？</p>
+        </div>
+        <div class="section memo">
+          <div class="section-label">📝 判断メモ</div>
+          <p>「moment to moment」は「瞬間から瞬間へと」が正しい。<br>
           この話では"瞬間"とは区切られているもの（漫画の中の世界）なので、刻一刻ではない<br>
-          changeは過去形ではない。これはケアレスミス。
-        </p>
+          changeは過去形ではない。これはケアレスミス。</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>pseudo-famous</h2>
-      <span class="entry-tag">英語表現</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>Smartlessというポッドキャストで「pseudo-famous」と言っていて調べてみた。</p>
-        <p>どうやら「疑似的に有名、なんとなく有名」という意味らしい。</p>
-        <p>「pseudo」＝　形容詞：偽の、いかさまの　名詞：いかさま師</p>
-        <p>最近だと、「ネットでしか有名じゃない」などのニュアンスを込めて使われることが多いらしい。</p>
-        <p>pseudonymは「ペンネーム」のように使われる。</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>pseudo-famous</h2>
+        <span class="entry-tag">英語表現</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>Smartlessというポッドキャストで「pseudo-famous」と言っていて調べてみた。</p>
+          <p>どうやら「疑似的に有名、なんとなく有名」という意味らしい。</p>
+          <p>「pseudo」＝　形容詞：偽の、いかさまの　名詞：いかさま師</p>
+          <p>最近だと、「ネットでしか有名じゃない」などのニュアンスを込めて使われることが多いらしい。</p>
+          <p>pseudonymは「ペンネーム」のように使われる。</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>Thank you.</h2>
-      <span class="entry-tag">英語表現</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>アメリカ英語では「Thank you.」は皮肉なことがよくある。</p>
-        <p>「教えてくれてありがとう」というふうに言って、「最初っから知ってた。なんで今更言うんだ」という意味を込めてたりする。</p>
-        <p>「Thank you.」は終了シグナルの機能を果たしているように感じる。</p>
-        <p>じゃあ、アメリカでは「Thank you.」の代わりにどう相手に寄り添った表現するかというと、「I will try that.」とか「（ちょっと皮肉にも聞こえるけど）You have a better idea.」とか、相手が正しいことを主張することのほうが多い気がする。</p>
-        <p>ある意味で、感謝を伝えることよりも、"相手が正しいことを言葉にする"ことは、アメリカ文化では敬語表現や感謝に近いのではないかと推測する。</p>
-        <p>英語圏では acknowledgement（承認） を示すことが感謝の実質的な代替になってる。</p>
-        <p>ただ、日本人も「ありがとう」と言って、そのアドバイスを無視することはある（笑）</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>Thank you.</h2>
+        <span class="entry-tag">英語表現</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>アメリカ英語では「Thank you.」は皮肉なことがよくある。</p>
+          <p>「教えてくれてありがとう」というふうに言って、「最初っから知ってた。なんで今更言うんだ」という意味を込めてたりする。</p>
+          <p>「Thank you.」は終了シグナルの機能を果たしているように感じる。</p>
+          <p>じゃあ、アメリカでは「Thank you.」の代わりにどう相手に寄り添った表現するかというと、「I will try that.」とか「（ちょっと皮肉にも聞こえるけど）You have a better idea.」とか、相手が正しいことを主張することのほうが多い気がする。</p>
+          <p>ある意味で、感謝を伝えることよりも、"相手が正しいことを言葉にする"ことは、アメリカ文化では敬語表現や感謝に近いのではないかと推測する。</p>
+          <p>英語圏では acknowledgement（承認） を示すことが感謝の実質的な代替になってる。</p>
+          <p>ただ、日本人も「ありがとう」と言って、そのアドバイスを無視することはある（笑）</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>conscience（コンシェンス）</h2>
-      <span class="entry-tag">英単語</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>意味：良心、道徳心、善悪を判断する心</p>
-        <p>My conscience wouldn't let me do that.（良心がそれをすることを許さなかった。）</p>
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>conscience（コンシェンス）</h2>
+        <span class="entry-tag">英単語</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>意味：良心、道徳心、善悪を判断する心</p>
+          <p>My conscience wouldn't let me do that.（良心がそれをすることを許さなかった。）</p>
+        </div>
       </div>
     </div>
-  </div>
- 
-  <!-- エントリー 1 -->
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>アルファベットはAlfaとBeta！？</h2>
-      <span class="entry-tag">ミニ知識</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">記事</div>
-        <p>ギリシャ語の最初の2文字が α（alpha）と β（beta）――それをまとめて呼んだのが <strong>alphabet</strong>。</p>
+
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>アルファベットはAlfaとBeta！？</h2>
+        <span class="entry-tag">ミニ知識</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">記事</div>
+          <p>ギリシャ語の最初の2文字が α（alpha）と β（beta）――それをまとめて呼んだのが <strong>alphabet</strong>。</p>
+        </div>
       </div>
     </div>
-  </div>
- 
-  <!-- エントリー 2 -->
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>"actually"は「実は」だけじゃない</h2>
-      <span class="entry-tag">ミニ知識</span>
+
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>"actually"は「実は」だけじゃない</h2>
+        <span class="entry-tag">ミニ知識</span>
+      </div>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">意味</div>
+          <p>期待と違う事実を軽く修正するニュアンス。</p>
+        </div>
+        <div class="section">
+          <div class="section-label">例文</div>
+          <p><strong>I actually like it.</strong>（意外とそれ好き）</p>
+        </div>
+      </div>
     </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">意味</div>
-        <p>期待と違う事実を軽く修正するニュアンス。</p>
+
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>「このセリフどう訳す問題」</h2>
+        <span class="entry-tag">翻訳</span>
       </div>
-      <div class="section">
-        <div class="section-label">例文</div>
-        <p><strong>I actually like it.</strong>（意外とそれ好き）</p>
-      </div>
-    </div>
-  </div>
- 
-  <!-- エントリー 3 -->
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>「このセリフどう訳す問題」</h2>
-      <span class="entry-tag">翻訳</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">原文（ムラサキキリンのチャーリーは様子が変 / デイヴィッド・D・レヴァイン）</div>
-        <p>Solipsistic delusions are frequently merely the initial manifestation of a general insensitivity to legitimacy.</p>
-      </div>
-      <div class="section">
-        <div class="section-label">翻訳</div>
-        <p>独我論的妄想は、しばしば単に正当性への全般的な鈍感さの初期症状とみなされています。</p>
-        <p>⇓　（修正）</p>
-        <p>独我論的妄想は、しばしば他者の人格の正当性やときにはその存在への全般的鈍感さの単なる初期症状とみなされています。</p>
-      </div>
-      <div class="section memo">
-        <div class="section-label">📝 判断メモ</div>
-        <p>
-          「solipsistic」は「唯我的」よりも<strong>「独我的」</strong>が正確（自我とその所産だけが実在するという立場）。<br>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">原文（ムラサキキリンのチャーリーは様子が変 / デイヴィッド・D・レヴァイン）</div>
+          <p>Solipsistic delusions are frequently merely the initial manifestation of a general insensitivity to legitimacy.</p>
+        </div>
+        <div class="section">
+          <div class="section-label">翻訳</div>
+          <p>独我論的妄想は、しばしば他者の人格の正当性やときにはその存在への全般的鈍感さの単なる初期症状とみなされています。</p>
+        </div>
+        <div class="section memo">
+          <div class="section-label">📝 判断メモ</div>
+          <p>「solipsistic」は「唯我的」よりも<strong>「独我的」</strong>が正確（自我とその所産だけが実在するという立場）。<br>
           「唯我的」は単に自己中心的な態度を指すので意味が変わってしまう。<br>
           「initial manifestation」＝初期症状。<br>
-          「general」の訳に迷い→「全般的な」（ある事柄の全体に及ぶさま）に落ち着いたが、まだ少し引っかかりがある。
-        </p>
+          「general」の訳に迷い→「全般的な」（ある事柄の全体に及ぶさま）に落ち着いたが、まだ少し引っかかりがある。</p>
+        </div>
       </div>
     </div>
-  </div>
- 
-  <!-- エントリー 4 -->
-  <div class="entry-card">
-    <div class="entry-header">
-      <h2>「このセリフどう訳す問題」</h2>
-      <span class="entry-tag">翻訳</span>
-    </div>
-    <div class="entry-body">
-      <div class="section">
-        <div class="section-label">原文</div>
-        <p>The protagonist kept drawing, even when no one believed in her story.</p>
+
+    <div class="entry-card">
+      <div class="entry-header">
+        <h2>「このセリフどう訳す問題」</h2>
+        <span class="entry-tag">翻訳</span>
       </div>
-      <div class="section">
-        <div class="section-label">翻訳</div>
-        <p>誰も主人公のストーリーを信じていなかったのに、それでも彼女は描き続けた。</p>
-      </div>
-      <div class="section memo">
-        <div class="section-label">📝 判断メモ</div>
-        <p>
-          「believed in」→ 受け身ぽく「信じてもらえない」にしてニュアンスを出す。<br>
+      <div class="entry-body">
+        <div class="section">
+          <div class="section-label">原文</div>
+          <p>The protagonist kept drawing, even when no one believed in her story.</p>
+        </div>
+        <div class="section">
+          <div class="section-label">翻訳</div>
+          <p>誰も主人公のストーリーを信じていなかったのに、それでも彼女は描き続けた。</p>
+        </div>
+        <div class="section memo">
+          <div class="section-label">📝 判断メモ</div>
+          <p>「believed in」→ 受け身ぽく「信じてもらえない」にしてニュアンスを出す。<br>
           <strong>「even when」＝「それでも」</strong> がこの文の軸。<br>
-          「〜のに、彼女は〜した」という対比構造を日本語でも活かすのがポイント。
-        </p>
+          「〜のに、彼女は〜した」という対比構造を日本語でも活かすのがポイント。</p>
+        </div>
       </div>
     </div>
-  </div>
- 
-  <!-- 追加記事はここにコピペで増やす -->
- 
+
+    <!-- 追加記事はここにコピペで増やす -->
+
+  </main>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-block">
+      <h3>📚 勉強ブログ</h3>
+      <a class="sidebar-link" href="blog-eiken.html">英検勉強ブログ</a>
+      <a class="sidebar-link" href="blog-toeic.html">TOEIC勉強ブログ</a>
+      <a class="sidebar-link" href="blog-writing.html">ライティング勉強ブログ</a>
+    </div>
+  </aside>
+
 </div>
 
 <div class="checker-bar"></div>
-  
+
 <footer>
   <strong>Azalea's Manga Diner</strong>
   © 2024 · Japan · All translations are original work
 </footer>
- 
+
 </body>
-</html>
- 
 </html>
