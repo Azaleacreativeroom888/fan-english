@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Dictionary · Manga Translation Diner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #D72B2B;
+      --red-dark: #A81E1E;
+      --yellow: #F5C518;
+      --yellow-light: #FFF3A3;
+      --cream: #FFF8EE;
+      --brown: #3B1F0A;
+      --tan: #E8C98A;
+      --white: #FFFDF7;
+      --green: #2C6B3A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    .checker-bar {
+      height: 18px;
+      background-image: repeating-linear-gradient(
+        90deg,
+        var(--red) 0px, var(--red) 18px,
+        var(--yellow) 18px, var(--yellow) 36px
+      );
+    }
+
+    header {
+      background: var(--brown);
+      padding: 24px 20px;
+      text-align: center;
+      border-bottom: 4px solid var(--brown);
+    }
+
+    .site-name {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    header h1 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: clamp(26px, 5vw, 48px);
+      color: #fff;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+    }
+
+    header h1 span { color: var(--yellow); }
+
+    header p {
+      font-family: 'Permanent Marker', cursive;
+      color: rgba(255,255,255,0.6);
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    nav {
+      background: var(--yellow);
+      display: flex;
+      justify-content: center;
+      border-bottom: 4px solid var(--brown);
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      color: var(--brown);
+      text-decoration: none;
+      padding: 14px 24px;
+      letter-spacing: 0.05em;
+      transition: background 0.15s, color 0.15s;
+      border-right: 2px solid rgba(59,31,10,0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a:last-child { border-right: none; }
+    nav a:hover { background: var(--red); color: #fff; }
+    nav a.active { background: var(--red); color: #fff; }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      max-width: 1060px;
+      margin: 36px auto 80px;
+      padding: 0 20px;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .main { flex: 3; min-width: 0; }
+
+    /* ── SEARCH ── */
+    .search-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 8px;
+      box-shadow: 3px 3px 0 var(--brown);
+      color: var(--brown);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 13px 48px 13px 18px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input::placeholder { color: rgba(59,31,10,0.3); font-weight: 600; }
+
+    .search-input:focus {
+      border-color: var(--red);
+      box-shadow: 3px 3px 0 var(--red-dark);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      pointer-events: none;
+    }
+
+    .result-count {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 11px;
+      color: rgba(59,31,10,0.45);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      min-height: 16px;
+    }
+
+    /* ── WORD LIST ── */
+    .word-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .word-card {
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 10px;
+      box-shadow: 4px 4px 0 var(--brown);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .word-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: var(--red);
+      border-radius: 7px 0 0 7px;
+      transition: background 0.15s;
+    }
+
+    .word-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--brown);
+    }
+
+    .word-card.open {
+      border-color: var(--red);
+    }
+
+    .word-card.open::before { background: var(--red); }
+
+    .word-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px 14px 20px;
+      flex-wrap: wrap;
+    }
+
+    .word-en {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 16px;
+      color: var(--brown);
+      letter-spacing: 0.03em;
+      flex: 1;
+    }
+
+    .word-ja {
+      font-size: 13px;
+      color: rgba(59,31,10,0.6);
+      font-weight: 700;
+    }
+
+    .word-type {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--brown);
+      color: var(--yellow);
+      padding: 3px 9px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .word-arrow {
+      font-size: 14px;
+      color: rgba(59,31,10,0.3);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .word-card.open .word-arrow { transform: rotate(90deg); }
+
+    /* ── DETAIL ── */
+    .word-detail {
+      display: none;
+      padding: 0 16px 16px 20px;
+      border-top: 2px dashed var(--tan);
+      margin: 0 16px 0 20px;
+    }
+
+    .word-card.open .word-detail { display: block; }
+
+    .word-meaning {
+      font-size: 14px;
+      line-height: 1.85;
+      color: rgba(59,31,10,0.8);
+      font-weight: 400;
+      padding-top: 12px;
+    }
+
+    .word-example {
+      margin-top: 10px;
+      background: var(--yellow-light);
+      border: 1.5px solid var(--tan);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(59,31,10,0.75);
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    .word-example span {
+      display: block;
+      font-style: normal;
+      font-size: 12px;
+      color: rgba(59,31,10,0.55);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* ── NO RESULT ── */
+    .no-result {
+      text-align: center;
+      padding: 40px 0;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      color: rgba(59,31,10,0.4);
+      letter-spacing: 0.06em;
+      display: none;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar { flex: 1; min-width: 200px; }
+
+    .sidebar-block {
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 10px;
+      box-shadow: 5px 5px 0 var(--brown);
+      padding: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sidebar-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 6px;
+      background: var(--yellow);
+      border-radius: 7px 0 0 7px;
+    }
+
+    .sidebar-block h3 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      color: var(--brown);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed var(--tan);
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 13px;
+      font-weight: 900;
+      padding: 9px 10px;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      transition: all 0.15s;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-link::before {
+      content: '▶';
+      font-size: 8px;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+
+    .sidebar-link:hover {
+      background: var(--yellow-light);
+      border-color: var(--tan);
+      padding-left: 14px;
+    }
+
+    .sidebar-link.current {
+      background: var(--yellow-light);
+      border-color: var(--tan);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: rgba(255,248,238,0.5);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      line-height: 1.9;
+    }
+
+    footer strong {
+      color: var(--yellow);
+      font-family: 'Alfa Slab One', serif;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 720px) {
+      nav a { font-size: 12px; padding: 12px 14px; }
+      .layout { flex-direction: column; padding: 0 16px 60px; }
+      .sidebar { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="checker-bar"></div>
+
+<header>
+  <div class="site-name">Manga Translation Diner</div>
+  <h1>📚 <span>Dictionary</span></h1>
+  <p>漫画・英語の用語集 — クリックで詳細を見る</p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="translation.html" class="active">📖 Translation Log</a>
+  <a href="blog.html">✍️ Blog</a>
+  <a href="gallery.html">🖼️ Gallery</a>
+  <a href="contact.html">📩 Contact</a>
+</nav>
+
+<div class="layout">
+
+  <main class="main">
+
+    <div class="search-wrap">
+      <input class="search-input" type="text" id="searchInput"
+        placeholder="単語を入力して検索…" oninput="filterWords()" autocomplete="off">
+      <span class="search-icon">🔍</span>
+    </div>
+
+    <p class="result-count" id="resultCount"></p>
+
+    <div class="word-list" id="wordList"></div>
+    <p class="no-result" id="noResult"></p>
+
+  </main>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-block">
+      <h3>📖 Translation</h3>
+      <a class="sidebar-link" href="translation.html">Translation Log</a>
+      <a class="sidebar-link current" href="dictionary.html">Dictionary</a>
+    </div>
+    <div class="sidebar-block">
+      <h3>📚 勉強ブログ</h3>
+      <a class="sidebar-link" href="blog-eiken.html">英検勉強ブログ</a>
+      <a class="sidebar-link" href="blog-toeic.html">TOEIC勉強ブログ</a>
+      <a class="sidebar-link" href="blog-writing.html">ライティング勉強ブログ</a>
+    </div>
+  </aside>
+
+</div>
+
+<div class="checker-bar"></div>
+
+<footer>
+  <strong>Manga Translation Diner</strong>
+  Please do not use any images, text, or works on this site for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.
+</footer>
+
+<script>
+  /* =============================================
+     ★ 単語データ ★
+     追加するときはこの配列にオブジェクトを足すだけ！
+  ============================================= */
+  const words = [
+
+    // ---- 英語 → 日本語 ----
+    { en: "protagonist", ja: "主人公", type: "en-ja",
+      meaning: "物語の中心となるキャラクター。主人公。",
+      example: "The protagonist of this manga is a weak hero.",
+      exampleJa: "この漫画の主人公は弱い勇者です。" },
+
+    { en: "antagonist", ja: "悪役 / 敵役", type: "en-ja",
+      meaning: "主人公と対立するキャラクター。ライバルや敵。",
+      example: "The antagonist tries to defeat the protagonist.",
+      exampleJa: "悪役は主人公を倒そうとします。" },
+
+    { en: "plot twist", ja: "どんでん返し", type: "en-ja",
+      meaning: "物語の予想外の展開。読者が驚くような急な方向転換。",
+      example: "The plot twist at the end was shocking.",
+      exampleJa: "最後のどんでん返しは衝撃的でした。" },
+
+    { en: "cliffhanger", ja: "引き", type: "en-ja",
+      meaning: "次回を読みたくなるような、緊張感のある話の終わり方。",
+      example: "The chapter ended on a cliffhanger.",
+      exampleJa: "その話は引きで終わりました。" },
+
+    { en: "foreshadowing", ja: "伏線", type: "en-ja",
+      meaning: "後の展開を予告する描写や演出。",
+      example: "That scene was foreshadowing for the finale.",
+      exampleJa: "あのシーンはクライマックスへの伏線でした。" },
+
+    { en: "one-shot", ja: "読み切り", type: "en-ja",
+      meaning: "1話で完結する漫画。シリーズになっていない単発作品。",
+      example: "This is a one-shot manga.",
+      exampleJa: "これは読み切り漫画です。" },
+
+    { en: "serialization", ja: "連載", type: "en-ja",
+      meaning: "定期的に続きが掲載される形式の漫画。",
+      example: "The manga started serialization last year.",
+      exampleJa: "その漫画は去年から連載が始まりました。" },
+
+    { en: "panel", ja: "コマ", type: "en-ja",
+      meaning: "漫画の1つ1つの枠。絵が描かれた区画のこと。",
+      example: "This page has six panels.",
+      exampleJa: "このページには6つのコマがあります。" },
+
+    { en: "speech bubble", ja: "吹き出し", type: "en-ja",
+      meaning: "キャラクターのセリフを表す丸や楕円形の枠。",
+      example: "The speech bubble shows what the character is saying.",
+      exampleJa: "吹き出しにキャラクターのセリフが書かれています。" },
+
+    { en: "sound effect", ja: "擬音語 / 効果音", type: "en-ja",
+      meaning: "漫画で音を文字で表現したもの。「ドーン」「ザーザー」など。",
+      example: "Japanese manga uses a lot of sound effects.",
+      exampleJa: "日本の漫画は擬音語をよく使います。" },
+
+    { en: "chapter", ja: "話 / 第〇話", type: "en-ja",
+      meaning: "漫画の1回分のエピソード。",
+      example: "Chapter 1 introduces the main characters.",
+      exampleJa: "第1話では主要キャラクターが紹介されます。" },
+
+    { en: "volume", ja: "単行本 / 巻", type: "en-ja",
+      meaning: "複数の話をまとめた本。「1巻」「2巻」のように数える。",
+      example: "I bought the first volume of this manga.",
+      exampleJa: "この漫画の1巻を買いました。" },
+
+    { en: "splash page", ja: "見開きページ", type: "en-ja",
+      meaning: "2ページにまたがる大きな1枚絵のページ。",
+      example: "The battle scene was drawn as a splash page.",
+      exampleJa: "戦闘シーンは見開きページで描かれていました。" },
+
+    // ---- 日本語 → 英語 ----
+    { en: "manga", ja: "漫画", type: "ja-en",
+      meaning: "日本式のコミック・グラフィックノベル。右から左に読む縦組みが基本。",
+      example: "Manga is read from right to left.",
+      exampleJa: "漫画は右から左へ読みます。" },
+
+    { en: "chibi", ja: "ちびキャラ / デフォルメ", type: "ja-en",
+      meaning: "キャラクターを小さくかわいくデフォルメした描き方。",
+      example: "The artist drew a chibi version of the character.",
+      exampleJa: "作者はキャラクターのちびバージョンを描きました。" },
+
+    { en: "shonen", ja: "少年漫画", type: "ja-en",
+      meaning: "主に少年向けの漫画。バトル・友情・成長がテーマになることが多い。",
+      example: "This is a classic shonen manga.",
+      exampleJa: "これは定番の少年漫画です。" },
+
+    { en: "shojo", ja: "少女漫画", type: "ja-en",
+      meaning: "主に少女向けの漫画。恋愛・感情・人間関係がテーマになることが多い。",
+      example: "Shojo manga often focuses on romance.",
+      exampleJa: "少女漫画はロマンスを中心に描くことが多いです。" },
+
+    { en: "isekai", ja: "異世界", type: "ja-en",
+      meaning: "主人公が別の世界に転移・転生するジャンル。",
+      example: "Isekai stories are very popular in manga.",
+      exampleJa: "異世界ものは漫画でとても人気があります。" },
+
+    { en: "tsundere", ja: "ツンデレ", type: "ja-en",
+      meaning: "普段はぶっきらぼうだが、実は優しい・好意がある性格のキャラクター。",
+      example: "She is a classic tsundere character.",
+      exampleJa: "彼女は典型的なツンデレキャラです。" },
+
+    // ---- 漫画用語 ----
+    { en: "storyboard", ja: "ネーム", type: "term",
+      meaning: "漫画を描く前に作るラフな下書き。コマ割り・セリフ・構図を決める工程。英語では「storyboard」または「rough draft」とも言う。",
+      example: "She finished the storyboard for chapter 3.",
+      exampleJa: "彼女は3話のネームを完成させました。" },
+
+    { en: "inking", ja: "ペン入れ / 線画", type: "term",
+      meaning: "鉛筆の下書きの上にペンで線を引く工程。デジタルでは「線画」とも呼ばれる。",
+      example: "Inking takes a lot of practice.",
+      exampleJa: "ペン入れにはたくさんの練習が必要です。" },
+
+    { en: "screentone", ja: "スクリーントーン / トーン", type: "term",
+      meaning: "漫画の影や模様に使うドット柄のシート。デジタルでも同じ効果を使う。",
+      example: "She added screentone to the background.",
+      exampleJa: "彼女は背景にスクリーントーンを貼りました。" },
+
+    { en: "submission / pitch", ja: "持ち込み", type: "term",
+      meaning: "漫画家志望者が出版社に直接作品を持参して評価してもらうこと。",
+      example: "She is preparing for her manga submission.",
+      exampleJa: "彼女は漫画の持ち込みを準備しています。" },
+
+    { en: "chapter cover", ja: "扉絵", type: "term",
+      meaning: "各話の冒頭に描かれるカラーや白黒の見出し絵。",
+      example: "The chapter cover features the main character.",
+      exampleJa: "扉絵には主人公が描かれています。" },
+
+    { en: "honorific", ja: "敬称（さん・くん・ちゃんなど）", type: "term",
+      meaning: "日本語で名前の後につける敬称。英語に翻訳するとき扱いが難しい表現のひとつ。",
+      example: "Japanese honorifics are often kept in manga translations.",
+      exampleJa: "漫画の翻訳では日本語の敬称がそのまま使われることが多いです。" },
+
+    { en: "fav", ja: "推し", type: "term",
+      meaning: "「fav＝推し」ではあるけれど、完全に同じ意味ではない。favはお気に入りという意味があって推しよりも広く使われる。",
+      example: "He's my fav character in the series.",
+      exampleJa: "彼はそのシリーズで一番好きなキャラ（推し）。" },
+
+    { en: "line", ja: "セリフ", type: "term",
+      meaning: "漫画・アニメ・映画・舞台の「セリフ」全般。",
+      example: "He forgot his lines.",
+      exampleJa: "彼はセリフを忘れた。" },
+
+    { en: "dialogue", ja: "セリフ / ダイアログ", type: "term",
+      meaning: "キャラ同士の「セリフ」。",
+      example: "The dialogue between the two characters felt very natural.",
+      exampleJa: "その2人のキャラクターの会話はとても自然に感じられた。" },
+
+    { en: "monologue", ja: "セリフ / モノローグ", type: "term",
+      meaning: "心の声や一人語りの「セリフ」。",
+      example: "The character's monologue reveals her true feelings.",
+      exampleJa: "そのキャラクターのモノローグは彼女の本心を明かしている。" },
+
+    { en: "speech", ja: "セリフ / 長セリフ / スピーチ", type: "term",
+      meaning: "長めの「セリフ」。",
+      example: "The character delivers a powerful speech before the final battle.",
+      exampleJa: "そのキャラクターは最終決戦の前に力強いスピーチを語る。" },
+
+    { en: "isekaied", ja: "転生する", type: "term",
+      meaning: "なろう系によくある異世界転生すること。",
+      example: "I got isekaied after being hit by a truck, and woke up in a world full of magic.",
+      exampleJa: "トラックに轢かれて異世界送りになり、目覚めたら魔法だらけの世界だった。" },
+  ];
+
+  /* =============================================
+     タイプラベル変換
+  ============================================= */
+  const typeLabel = {
+    'en-ja': '英→日',
+    'ja-en': '日→英',
+    'term':  '用語'
+  };
+
+  let currentQuery = '';
+
+  function filterWords() {
+    currentQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+    const filtered = words.filter(w =>
+      !currentQuery ||
+      w.en.toLowerCase().includes(currentQuery) ||
+      w.ja.includes(currentQuery) ||
+      w.meaning.includes(currentQuery)
+    );
+    renderWords(filtered);
+  }
+
+  function renderWords(list) {
+    const container = document.getElementById('wordList');
+    const noResult  = document.getElementById('noResult');
+    const countEl   = document.getElementById('resultCount');
+
+    if (list.length === 0) {
+      container.innerHTML = '';
+      noResult.style.display = 'block';
+      noResult.textContent = '「' + currentQuery + '」は見つかりませんでした。';
+      countEl.textContent = '';
+      return;
+    }
+
+    noResult.style.display = 'none';
+    countEl.textContent = list.length + ' 件';
+
+    container.innerHTML = list.map(w => {
+      const example = w.example
+        ? `<div class="word-example">${w.example}<span>${w.exampleJa || ''}</span></div>`
+        : '';
+      return `
+        <div class="word-card" onclick="toggleCard(this)">
+          <div class="word-header">
+            <span class="word-en">${w.en}</span>
+            ${w.ja ? `<span class="word-ja">${w.ja}</span>` : ''}
+            <span class="word-type">${typeLabel[w.type] || w.type}</span>
+            <span class="word-arrow">›</span>
+          </div>
+          <div class="word-detail">
+            <p class="word-meaning">${w.meaning}</p>
+            ${example}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function toggleCard(el) {
+    el.classList.toggle('open');
+  }
+
+  filterWords();
+</script>
+
+</body>
+</html>
