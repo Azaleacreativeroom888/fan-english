@@ -166,7 +166,6 @@
       box-shadow: 7px 7px 0 var(--brown);
     }
 
-    /* Illustrated placeholders using CSS art */
     .gallery-art {
       width: 100%;
       aspect-ratio: 4/3;
@@ -182,7 +181,6 @@
       height: 100%;
     }
 
-    /* ── MANGA CARD IMAGE: contain & no zoom ── */
     .gallery-art a.manga-link {
       display: block;
       width: 100%;
@@ -192,7 +190,7 @@
     .gallery-art a.manga-link img {
       width: 100%;
       height: 100%;
-      object-fit: contain;   /* 拡大せず枠内に収める */
+      object-fit: contain;
       object-position: center;
       display: block;
     }
@@ -234,43 +232,94 @@
       flex: 1;
     }
 
-    /* ── SUBMIT CARD ── */
-    .submit-banner {
-      background: var(--red);
+    /* ── RECOMMENDATION BOX ── */
+    .rec-box {
+      background: #fff;
       border: 3px solid var(--brown);
       border-radius: 10px;
       box-shadow: 5px 5px 0 var(--brown);
-      padding: 28px 24px;
-      text-align: center;
-      margin-top: 36px;
+      overflow: hidden;
+      margin-top: 24px;
     }
 
-    .submit-banner h3 {
+    .rec-box-header {
+      background: var(--brown);
+      padding: 16px 20px;
+    }
+
+    .rec-box-header h3 {
       font-family: 'Alfa Slab One', serif;
-      font-size: 22px;
-      color: #fff;
-      margin-bottom: 8px;
+      font-size: 18px;
+      color: var(--yellow);
+      margin-bottom: 4px;
     }
 
-    .submit-banner p {
-      color: rgba(255,255,255,0.85);
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 16px;
+    .rec-box-header p {
+      font-size: 12px;
+      color: rgba(255,248,238,0.6);
+      font-weight: 600;
     }
 
-    .coming-badge {
-      display: inline-block;
+    .rec-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      padding: 16px 20px;
+      transition: background 0.15s;
+      position: relative;
+      border-top: 3px solid var(--brown);
+    }
+
+    .rec-link::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 5px;
       background: var(--yellow);
-      color: var(--brown);
-      font-family: 'Alfa Slab One', serif;
-      font-size: 14px;
-      padding: 8px 20px;
-      border-radius: 30px;
-      border: 2.5px solid var(--brown);
-      box-shadow: 3px 3px 0 var(--brown);
-      letter-spacing: 0.04em;
     }
+
+    .rec-link:hover { background: var(--yellow-light); }
+
+    .rec-link-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--yellow-light);
+      border: 2px solid var(--tan);
+      border-radius: 8px;
+    }
+
+    .rec-link-text { flex: 1; min-width: 0; }
+
+    .rec-link-title {
+      display: block;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 15px;
+      color: var(--brown);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+
+    .rec-link-desc {
+      display: block;
+      font-size: 12px;
+      color: rgba(59,31,10,0.6);
+      font-weight: 700;
+    }
+
+    .rec-link-arrow {
+      font-size: 24px;
+      color: var(--red);
+      font-weight: 900;
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+
+    .rec-link:hover .rec-link-arrow { transform: translateX(3px); }
 
     footer {
       background: var(--brown);
@@ -312,7 +361,7 @@
   <a href="translation.html">📖 Translation Log</a>
   <a href="blog.html">✍️ Blog</a>
   <a href="gallery.html" class="active">🖼️ Gallery</a>
-  <a href="contact.html" class="active">📮 Contact</a>
+  <a href="contact.html">📮 Contact</a>
 </nav>
 
 <!-- FILTER -->
@@ -329,37 +378,52 @@
 <div class="gallery-section">
   <div class="gallery-grid" id="galleryGrid">
 
-    <!-- Card 1: The Kappa ── manga11-1.html へリンク -->
-  <div class="gallery-card" data-tag="comics">
-    <div class="gallery-art">
-      <a class="manga-link" href="manga11-1.html">
-        <img src="河童 英語_001.jpg" alt="The Kappa">
-      </a>
-      <span class="read-badge">▶ READ NOW</span>
+    <!-- Card 1: The Kappa -->
+    <div class="gallery-card" data-tag="comics">
+      <div class="gallery-art">
+        <a class="manga-link" href="manga11-1.html">
+          <img src="河童 英語_001.jpg" alt="The Kappa">
+        </a>
+      </div>
+      <div class="gallery-info">
+        <span class="gallery-tag">📖 Comic</span>
+        <h3>The "Kappa"</h3>
+        <p>A manga story featuring the legendary Japanese water creature — reimagined and translated into English.</p>
+      </div>
     </div>
-    <div class="gallery-info">
-      <span class="gallery-tag">📖 Comic</span>
-      <h3>The "Kappa"</h3>
-      <p>A manga story featuring the legendary Japanese water creature — reimagined and translated into English.</p>
+
+    <!-- Card 2: The Last Idol -->
+    <div class="gallery-card" data-tag="comics">
+      <div class="gallery-art">
+        <a class="manga-link" href="manga4-1.html">
+          <img src="manga4-page1-en.jpg" alt="The Last Idol">
+        </a>
+      </div>
+      <div class="gallery-info">
+        <span class="gallery-tag">📖 Comic</span>
+        <h3>The Last Idol</h3>
+        <p>An English-translated manga about idols, dreams, and the pressure of the spotlight.</p>
+      </div>
     </div>
+
+  </div><!-- end gallery-grid -->
+
+  <!-- Recommendation Link Box -->
+  <div class="rec-box">
+    <div class="rec-box-header">
+      <h3>🍔 Azalea's Picks</h3>
+      <p>Recommended manga, anime, games & more — curated by Azalea72</p>
+    </div>
+    <a class="rec-link" href="report1.html">
+      <div class="rec-link-icon">⭐</div>
+      <div class="rec-link-text">
+        <span class="rec-link-title">Japan's Best — Manga, Anime, Games & More</span>
+        <span class="rec-link-desc">A handpicked list of recommendations from a manga artist in Japan</span>
+      </div>
+      <span class="rec-link-arrow">›</span>
+    </a>
   </div>
 
-    <!-- Card 2: The Last Idol ── manga4-1.html へリンク -->
-  <div class="gallery-card" data-tag="comics">
-    <div class="gallery-art">
-      <a class="manga-link" href="manga4-1.html">
-        <img src="manga4-page1-en.jpg" alt="The Last Idol">
-      </a>
-      <span class="read-badge">▶ READ NOW</span>
-    </div>
-    <div class="gallery-info">
-      <span class="gallery-tag">📖 Comic</span>
-      <h3>The Last Idol</h3>
-      <p>An English-translated manga about idols, dreams, and the pressure of the spotlight.</p>
-    </div>
-  </div>
-
-</div>
 </div>
 
 <div class="checker-bar"></div>
