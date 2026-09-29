@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Japan's Best · Manga Translation Diner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #D72B2B;
+      --red-dark: #A81E1E;
+      --yellow: #F5C518;
+      --yellow-light: #FFF3A3;
+      --cream: #FFF8EE;
+      --brown: #3B1F0A;
+      --tan: #E8C98A;
+      --white: #FFFDF7;
+      --green: #2C6B3A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    .checker-bar {
+      height: 18px;
+      background-image: repeating-linear-gradient(
+        90deg,
+        var(--red) 0px, var(--red) 18px,
+        var(--yellow) 18px, var(--yellow) 36px
+      );
+    }
+
+    header {
+      background: var(--green);
+      padding: 24px 20px;
+      text-align: center;
+      border-bottom: 4px solid var(--brown);
+    }
+
+    .site-name {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    header h1 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: clamp(24px, 5vw, 44px);
+      color: #fff;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+      line-height: 1.2;
+    }
+
+    header h1 span { color: var(--yellow); }
+
+    header p {
+      font-family: 'Permanent Marker', cursive;
+      color: rgba(255,255,255,0.75);
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    nav {
+      background: var(--yellow);
+      display: flex;
+      justify-content: center;
+      border-bottom: 4px solid var(--brown);
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 14px;
+      color: var(--brown);
+      text-decoration: none;
+      padding: 14px 24px;
+      letter-spacing: 0.05em;
+      transition: background 0.15s, color 0.15s;
+      border-right: 2px solid rgba(59,31,10,0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a:last-child { border-right: none; }
+    nav a:hover { background: var(--red); color: #fff; }
+    nav a.active { background: var(--green); color: #fff; }
+
+    /* ── MAIN ── */
+    .main-wrap {
+      max-width: 760px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* ── RANKING CARD ── */
+    /* コピペで増やすときは↓この.rank-cardブロックをまるごとコピーしてください */
+    .rank-card {
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 12px;
+      box-shadow: 5px 5px 0 var(--brown);
+      overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .rank-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--brown);
+    }
+
+    .rank-header {
+      background: var(--yellow);
+      border-bottom: 3px solid var(--brown);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .rank-number {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 32px;
+      color: var(--brown);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 48px;
+      text-align: center;
+    }
+
+    /* 1位だけ特別色 */
+    .rank-card:first-child .rank-number { color: var(--red); }
+    .rank-card:first-child .rank-header { background: var(--yellow); }
+
+    .rank-title {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 18px;
+      color: var(--brown);
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .rank-genre {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--brown);
+      color: var(--yellow);
+      padding: 3px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .rank-body {
+      padding: 16px 20px;
+    }
+
+    .rank-body p {
+      font-size: 14px;
+      line-height: 1.85;
+      color: rgba(59,31,10,0.75);
+      font-weight: 400;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--brown);
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      padding: 10px 18px;
+      border: 2.5px solid var(--brown);
+      border-radius: 8px;
+      box-shadow: 3px 3px 0 var(--brown);
+      transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+      letter-spacing: 0.04em;
+      align-self: flex-start;
+    }
+
+    .back-link:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--brown);
+      background: var(--yellow-light);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: rgba(255,248,238,0.5);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      line-height: 1.9;
+    }
+
+    footer strong {
+      color: var(--yellow);
+      font-family: 'Alfa Slab One', serif;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 560px) {
+      nav a { font-size: 12px; padding: 12px 14px; }
+      .rank-number { font-size: 24px; min-width: 36px; }
+      .rank-title { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="checker-bar"></div>
+
+<header>
+  <div class="site-name">Manga Translation Diner</div>
+  <h1>⭐ <span>Japan's Best</span></h1>
+  <p>Manga, Anime, Games & More — Azalea72's Picks</p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="translation.html">📖 Translation Log</a>
+  <a href="blog.html">✍️ Blog</a>
+  <a href="gallery.html" class="active">🖼️ Gallery</a>
+  <a href="contact.html">📩 Contact</a>
+</nav>
+
+<div class="main-wrap">
+
+  <!-- =============================================
+    ★ ランキングカード ★
+    増やすときはこの↓ rank-card ブロックをまるごとコピーして
+    番号・タイトル・ジャンル・感想を書き換えてください
+  ============================================= -->
+
+  <!-- No.1 -->
+  <div class="rank-card">
+    <div class="rank-header">
+      <span class="rank-number">1</span>
+      <span class="rank-title">[タイトルを入れる]</span>
+      <span class="rank-genre">[ジャンル]</span>
+    </div>
+    <div class="rank-body">
+      <p>[感想を入れる]</p>
+    </div>
+  </div>
+
+  <!-- No.2 -->
+  <div class="rank-card">
+    <div class="rank-header">
+      <span class="rank-number">2</span>
+      <span class="rank-title">[タイトルを入れる]</span>
+      <span class="rank-genre">[ジャンル]</span>
+    </div>
+    <div class="rank-body">
+      <p>[感想を入れる]</p>
+    </div>
+  </div>
+
+  <!-- No.3 -->
+  <div class="rank-card">
+    <div class="rank-header">
+      <span class="rank-number">3</span>
+      <span class="rank-title">[タイトルを入れる]</span>
+      <span class="rank-genre">[ジャンル]</span>
+    </div>
+    <div class="rank-body">
+      <p>[感想を入れる]</p>
+    </div>
+  </div>
+
+  <!-- No.4 -->
+  <div class="rank-card">
+    <div class="rank-header">
+      <span class="rank-number">4</span>
+      <span class="rank-title">[タイトルを入れる]</span>
+      <span class="rank-genre">[ジャンル]</span>
+    </div>
+    <div class="rank-body">
+      <p>[感想を入れる]</p>
+    </div>
+  </div>
+
+  <!-- No.5 -->
+  <div class="rank-card">
+    <div class="rank-header">
+      <span class="rank-number">5</span>
+      <span class="rank-title">[タイトルを入れる]</span>
+      <span class="rank-genre">[ジャンル]</span>
+    </div>
+    <div class="rank-body">
+      <p>[感想を入れる]</p>
+    </div>
+  </div>
+
+  <!-- ここより↑にコピペで追加していく -->
+
+  <a class="back-link" href="gallery.html">← Back to Gallery</a>
+
+</div>
+
+<div class="checker-bar"></div>
+
+<footer>
+  <strong>Azalea's Manga Diner</strong>
+  © 2024 · Japan · All opinions are Azalea72's own
+</footer>
+
+</body>
+</html>
