@@ -268,6 +268,33 @@
       font-weight: 600;
     }
 
+    /* ── PAGINATION ── */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .page-btn {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 13px;
+      padding: 8px 16px;
+      background: #fff;
+      border: 2.5px solid var(--brown);
+      border-radius: 6px;
+      box-shadow: 3px 3px 0 var(--brown);
+      color: var(--brown);
+      cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+      letter-spacing: 0.05em;
+    }
+    .page-btn:hover { background: var(--yellow-light); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--brown); }
+    .page-btn.active { background: var(--red); color: #fff; border-color: var(--red-dark); box-shadow: 3px 3px 0 var(--red-dark); }
+    .page-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+    .page-info { font-family: 'Alfa Slab One', serif; font-size: 11px; color: rgba(59,31,10,0.45); letter-spacing: 0.1em; text-transform: uppercase; text-align: center; margin-top: 10px; }
+
     /* ── NO RESULT ── */
     .no-result {
       text-align: center;
@@ -405,6 +432,8 @@
 
     <div class="word-list" id="wordList"></div>
     <p class="no-result" id="noResult"></p>
+    <div class="pagination" id="pagination"></div>
+    <p class="page-info" id="pageInfo"></p>
 
   </main>
 
@@ -419,7 +448,7 @@
       <h3>📚 勉強ブログ</h3>
       <a class="sidebar-link" href="blog-eiken.html">英検勉強ブログ</a>
       <a class="sidebar-link" href="blog-toeic.html">TOEIC勉強ブログ</a>
-      <a class="sidebar-link" href="blog-study.html">勉強ブログ</a>
+      <a class="sidebar-link" href="blog-writing.html">ライティング勉強ブログ</a>
     </div>
   </aside>
 
@@ -917,36 +946,48 @@
     'term':  '用語'
   };
 
+  const PER_PAGE = 100;
+  let currentPage = 1;
   let currentQuery = '';
+  let filteredWords = [];
 
   function filterWords() {
     currentQuery = document.getElementById('searchInput').value.trim().toLowerCase();
-    const filtered = words.filter(w =>
+    currentPage = 1;
+    filteredWords = words.filter(w =>
       !currentQuery ||
       w.en.toLowerCase().includes(currentQuery) ||
       w.ja.includes(currentQuery) ||
       w.meaning.includes(currentQuery)
     );
-    renderWords(filtered);
+    renderPage();
   }
 
-  function renderWords(list) {
-    const container = document.getElementById('wordList');
-    const noResult  = document.getElementById('noResult');
-    const countEl   = document.getElementById('resultCount');
+  function renderPage() {
+    const container  = document.getElementById('wordList');
+    const noResult   = document.getElementById('noResult');
+    const countEl    = document.getElementById('resultCount');
+    const pagination = document.getElementById('pagination');
+    const pageInfo   = document.getElementById('pageInfo');
 
-    if (list.length === 0) {
+    if (filteredWords.length === 0) {
       container.innerHTML = '';
       noResult.style.display = 'block';
       noResult.textContent = '「' + currentQuery + '」は見つかりませんでした。';
       countEl.textContent = '';
+      pagination.innerHTML = '';
+      pageInfo.textContent = '';
       return;
     }
 
     noResult.style.display = 'none';
-    countEl.textContent = list.length + ' 件';
+    const totalPages = Math.ceil(filteredWords.length / PER_PAGE);
+    const start = (currentPage - 1) * PER_PAGE;
+    const pageWords = filteredWords.slice(start, start + PER_PAGE);
 
-    container.innerHTML = list.map(w => {
+    countEl.textContent = filteredWords.length + ' 件';
+
+    container.innerHTML = pageWords.map(w => {
       const example = w.example
         ? `<div class="word-example">${w.example}<span>${w.exampleJa || ''}</span></div>`
         : '';
@@ -964,6 +1005,30 @@
           </div>
         </div>`;
     }).join('');
+
+    // 100件以下はページネーション非表示
+    if (totalPages <= 1) {
+      pagination.innerHTML = '';
+      pageInfo.textContent = '';
+      return;
+    }
+
+    let html = '';
+    html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>‹ 前へ</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+      html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+    }
+    html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>次へ ›</button>`;
+    pagination.innerHTML = html;
+    pageInfo.textContent = 'Page ' + currentPage + ' / ' + totalPages;
+  }
+
+  function goToPage(page) {
+    const totalPages = Math.ceil(filteredWords.length / PER_PAGE);
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    renderPage();
   }
 
   function toggleCard(el) {
